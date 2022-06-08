@@ -144,16 +144,16 @@ App = {
               resourcesRow.append(resourceTemplate.html());
             }
 
-            // Render resource Result
-            var resourceTemplate =
-              "<tr><th>" +
-              id +
-              "</th><td>" +
-              name +
-              "</td><td>" +
-              voteCount +
-              "</td></tr>";
-            resourcesResults.append(resourceTemplate);
+            // // Render resource Result
+            // var resourceTemplate =
+            //   "<tr><th>" +
+            //   id +
+            //   "</th><td>" +
+            //   name +
+            //   "</td><td>" +
+            //   voteCount +
+            //   "</td></tr>";
+            // resourcesResults.append(resourceTemplate);
 
             // Render resource ballot option
             var resourceOption =
