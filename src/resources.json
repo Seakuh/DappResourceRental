@@ -1,0 +1,98 @@
+[
+  {
+    "id": 0,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Lisco, Alabama"
+  },
+  {
+    "id": 1,
+    "name": "lecture hall",
+    "picture": "images/room1.jpeg",
+    "location": "Tooleville, West Virginia"
+  },
+  {
+    "id": 2,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Freeburn, Idaho"
+  },
+  {
+    "id": 3,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Camas, Pennsylvania"
+  },
+  {
+    "id": 4,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Gerber, South Dakota"
+  },
+  {
+    "id": 5,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Innsbrook, Illinois"
+  },
+  {
+    "id": 6,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Soudan, Louisiana"
+  },
+  {
+    "id": 7,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Jacksonwald, Palau"
+  },
+  {
+    "id": 8,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Honolulu, Hawaii"
+  },
+  {
+    "id": 9,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Matheny, Utah"
+  },
+  {
+    "id": 10,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Tyhee, Indiana"
+  },
+  {
+    "id": 11,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Windsor, Montana"
+  },
+  {
+    "id": 12,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Kingstowne, Nevada"
+  },
+  {
+    "id": 13,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Sultana, Massachusetts"
+  },
+  {
+    "id": 14,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Broadlands, Oregon"
+  },
+  {
+    "id": 15,
+    "name": "Normal Room",
+    "picture": "images/room1.jpeg",
+    "location": "Dawn, Wisconsin"
+  }
+]
