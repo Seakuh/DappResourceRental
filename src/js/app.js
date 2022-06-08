@@ -35,7 +35,7 @@ App = {
   initWeb3: async function () {
     if (typeof web3 !== "undefined") {
       // If a web3 instance is already provided by Meta Mask.
-      App.web3Provider = web3.currentProvider;
+      App.web3Provider = window.ethereum;
       web3 = new Web3(window.ethereum);
       var currentAddress = web3.currentProvider.selectedAddress;
       App.showUserAddress(currentAddress);
