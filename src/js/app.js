@@ -1,8 +1,13 @@
 App = {
   web3Provider: null,
   contracts: {},
+  account: "0x0",
 
-  init: async function () {
+  init: function () {
+    return App.initResources();
+  },
+
+  initResources: async function () {
     // Load resources.
     $.getJSON("../resources.json", function (data) {
       var resourcesRow = $("#resourcesRow");
@@ -14,7 +19,7 @@ App = {
         resourceTemplate.find(".resource-breed").text(data[i].breed);
         resourceTemplate.find(".resource-age").text(data[i].age);
         resourceTemplate.find(".resource-location").text(data[i].location);
-        resourceTemplate.find(".btn-adopt").attr("data-id", data[i].id);
+        resourceTemplate.find(".btn-rent").attr("data-id", data[i].id);
 
         resourcesRow.append(resourceTemplate.html());
       }
@@ -24,32 +29,44 @@ App = {
   },
 
   initWeb3: async function () {
-    /*
-     * Replace me...
-     */
-
+    if (typeof web3 !== "undefined") {
+      // If a web3 instance is already provided by Meta Mask.
+      App.web3Provider = web3.currentProvider;
+      web3 = new Web3(web3.currentProvider);
+    } else {
+      // Specify default instance if no web3 instance provided
+      App.web3Provider = new Web3.providers.HttpProvider(
+        "http://localhost:7545"
+      );
+      web3 = new Web3(App.web3Provider);
+    }
     return App.initContract();
   },
 
   initContract: function () {
-    /*
-     * Replace me...
-     */
+    $.getJSON("Resource.json", function (resource) {
+      // Instantiate a new truffle contract from the artifact
+      App.contracts.Resource = TruffleContract(resource);
+      // Connect provider to interact with contract
+      App.contracts.Resource.setProvider(App.web3Provider);
 
-    return App.bindEvents();
+      App.listenForEvents();
+
+      return App.bindEvents();
+    });
   },
 
   bindEvents: function () {
-    $(document).on("click", ".btn-adopt", App.handleAdopt);
+    $(document).on("click", ".btn-rent", App.handlerent);
   },
 
-  markAdopted: function () {
+  markrented: function () {
     /*
      * Replace me...
      */
   },
 
-  handleAdopt: function (event) {
+  handlerent: function (event) {
     event.preventDefault();
 
     var resourceId = parseInt($(event.target).data("id"));
