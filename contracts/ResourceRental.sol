@@ -63,7 +63,7 @@ contract ResourceRental {
     ) private {
         // represent Id of the renter
         resourcesCount++;
-        resources[rentersCount] = Resource(
+        resources[resourcesCount] = Resource(
             resourcesCount,
             _name,
             _picture,
