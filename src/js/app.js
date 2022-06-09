@@ -12,21 +12,21 @@ App = {
 
   initResources: async function () {
     // Load resources.
-    $.getJSON("../resources.json", function (data) {
-      var resourcesRow = $("#resourcesRow");
-      var resourceTemplate = $("#resourceTemplate");
+    // $.getJSON("../resources.json", function (data) {
+    //   var resourcesRow = $("#resourcesRow");
+    //   var resourceTemplate = $("#resourceTemplate");
 
-      for (i = 0; i < data.length; i++) {
-        resourceTemplate.find(".panel-title").text(data[i].name);
-        resourceTemplate.find("img").attr("src", data[i].picture);
-        resourceTemplate.find(".resource-breed").text(data[i].breed);
-        resourceTemplate.find(".resource-age").text(data[i].age);
-        resourceTemplate.find(".resource-location").text(data[i].location);
-        resourceTemplate.find(".btn-rent").attr("data-id", data[i].id);
+    //   for (i = 0; i < data.length; i++) {
+    //     resourceTemplate.find(".panel-title").text(data[i].name);
+    //     resourceTemplate.find("img").attr("src", data[i].picture);
+    //     resourceTemplate.find(".resource-breed").text(data[i].breed);
+    //     resourceTemplate.find(".resource-age").text(data[i].age);
+    //     resourceTemplate.find(".resource-location").text(data[i].location);
+    //     resourceTemplate.find(".btn-rent").attr("data-id", data[i].id);
 
-        resourcesRow.append(resourceTemplate.html());
-      }
-    });
+    //     resourcesRow.append(resourceTemplate.html());
+    //   }
+    // });
 
     return await App.initWeb3();
   },
@@ -115,12 +115,12 @@ App = {
         console.log(resourcesCount);
         console.log(resourceContractInstance.resourcesCount);
         var resourcesResults = $("#resroucesResults");
-        resourcesCount.empty();
+        // resourcesCount.empty();
 
         var resourcesSelect = $("#resourcesSelect");
-        resourcesCount.empty();
+        // resourcesCount.empty();
 
-        console.log(resourcesCount);
+        console.log("ResourcesCount: " + resourcesCount);
 
         for (var i = 1; i <= resourcesCount; i++) {
           resourceContractInstance.resources(i).then(function (resource) {
@@ -128,21 +128,16 @@ App = {
             var name = resource[1];
             var picture = resource[2];
             var location = resource[3];
+            console.log(id, name, picture, location);
 
             var resourcesRow = $("#resourcesRow");
             var resourceTemplate = $("#resourceTemplate");
+            resourceTemplate.find(".panel-title").text(name);
+            resourceTemplate.find("img").attr("src", picture);
+            resourceTemplate.find(".resource-location").text(location);
+            resourceTemplate.find(".btn-rent").attr("data-id", id);
 
-            for (i = 0; i < data.length; i++) {
-              resourceTemplate.find(".panel-title").text(dname);
-              resourceTemplate.find("img").attr("src", picture);
-              resourceTemplate.find(".resource-breed").text(location);
-              resourceTemplate
-                .find(".resource-location")
-                .text(data[i].location);
-              resourceTemplate.find(".btn-rent").attr("data-id", data[i].id);
-
-              resourcesRow.append(resourceTemplate.html());
-            }
+            resourcesRow.append(resourceTemplate.html());
 
             // // Render resource Result
             // var resourceTemplate =
@@ -156,12 +151,11 @@ App = {
             // resourcesResults.append(resourceTemplate);
 
             // Render resource ballot option
-            var resourceOption =
-              "<option value='" + id + "' >" + name + "</ option>";
-            resourcesSelect.append(resourceOption);
+            // var resourceOption =
+            //   "<option value='" + id + "' >" + name + "</ option>";
+            // resourcesSelect.append(resourceOption);
           });
         }
-        return resourceContractInstance.voters(App.account);
       })
       .then(function (hasVoted) {
         // Do not allow a user to vote
