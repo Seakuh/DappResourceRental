@@ -24,12 +24,15 @@ contract ResourceRental {
         string name;
         string picture;
         string location;
+        string fromTimeStamp;
+        string toTimeStamp;
     }
 
     // Model a Resource Advert
     struct ResourceAdvert {
         uint256 advertId;
-        uint256 resourceId;
+        string resourceName;
+        string resourceImageUrl;
         string fromTimeStamp;
         string toTimeStamp;
     }
@@ -78,7 +81,9 @@ contract ResourceRental {
     function addResource(
         string memory _name,
         string memory _picture,
-        string memory _location
+        string memory _location,
+        string memory _fromTimeStamp,
+        string memory _toTimeStamp
     ) private {
         // represent Id of the renter
         resourcesCount++;
@@ -86,20 +91,24 @@ contract ResourceRental {
             resourcesCount,
             _name,
             _picture,
-            _location
+            _location,
+            _fromTimeStamp,
+            _toTimeStamp
         );
     }
 
     function addResourceAdvert(
-        uint256 _resourceId,
+        string memory _name,
+        string memory _image,
         string memory _fromTimeStamp,
         string memory _toTimeStamp
-    ) private {
+    ) public {
         // represent Id of the renter
         resourcesAdvertCount++;
         resourcesAdverts[resourcesAdvertCount] = ResourceAdvert(
             resourcesCount,
-            _resourceId,
+            _name,
+            _image,
             _fromTimeStamp,
             _toTimeStamp
         );
@@ -131,15 +140,47 @@ contract ResourceRental {
         addRenter("Professor 1");
 
         // add example resources
-        addResource("Normal Room", "images/room1.jpeg", "Furtwangen, Germany");
-        addResource("Concert Hall", "images/room1.jpeg", "Mannheim, Germani");
-        addResource("Theater", "images/room1.jpeg", "Rom, Italy");
-        addResource("Server Room", "images/room1.jpeg", "Paris, France");
-        addResource("Test Room", "images/room1.jpeg", "Barcelona, Spain");
+        addResource(
+            "Normal Room",
+            "images/room1.jpeg",
+            "Furtwangen, Germany",
+            "1654782938174",
+            "1655992478797"
+        );
+        addResource(
+            "Concert Hall",
+            "images/room1.jpeg",
+            "Mannheim, Germani",
+            "1654782938174",
+            "1655992478797"
+        );
+        addResource(
+            "Theater",
+            "images/room1.jpeg",
+            "Rom, Italy",
+            "1654782938174",
+            "1655992478797"
+        );
+        addResource(
+            "Server Room",
+            "images/room1.jpeg",
+            "Paris, France",
+            "1654782938174",
+            "1655992478797"
+        );
+        addResource(
+            "Test Room",
+            "images/room1.jpeg",
+            "Barcelona, Spain",
+            "1654782938174",
+            "1655992478797"
+        );
         addResource(
             "Schulungszentrum Darmstadt",
             "https://www.schulungszentrum-darmstadt.de/wp-content/uploads/2019/09/DSC1868.jpg",
-            "Darmstadt, Germany"
+            "Darmstadt, Germany",
+            "1654782938174",
+            "1655992478797"
         );
 
         // add universities who are allowed to create resrouces

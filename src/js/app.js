@@ -1,5 +1,6 @@
 // Template
 // from truffle example https://github.com/truffle-box/pet-shop-box
+var resourceRentalContract;
 
 App = {
   web3Provider: null,
@@ -108,13 +109,17 @@ App = {
     App.contracts.ResourceRental.deployed()
       .then(function (instance) {
         var isUniversity = instance.isSenderUniversity(1);
+        var createAdvert = $("#create-advert");
+        createAdvert.hide();
 
         if (isUniversity) {
           console.log("Is University");
+          createAdvert.show();
         }
         return instance;
       })
       .then(function (instance) {
+        resourceRentalContract = instance;
         resourceContractInstance = instance;
         return resourceContractInstance.resourcesCount();
       })
@@ -135,13 +140,22 @@ App = {
             var name = resource[1];
             var picture = resource[2];
             var location = resource[3];
-            console.log(id, name, picture, location);
+            var fromTimeStamp = resource[4];
+            var toTimeStamp = resource[5];
+
+            var fromDateFormatted = convertToDateFormat(fromTimeStamp);
+            var toDateFormatted = convertToDateFormat(toTimeStamp);
+
+            console.log(fromDateFormatted + toDateFormatted);
 
             var resourcesRow = $("#resourcesRow");
             var resourceTemplate = $("#resourceTemplate");
             resourceTemplate.find(".panel-title").text(name);
             resourceTemplate.find("img").attr("src", picture);
             resourceTemplate.find(".resource-location").text(location);
+            resourceTemplate.find(".resource-fromTime").text(fromDateFormatted);
+            resourceTemplate.find(".resource-toTime").text(toDateFormatted);
+
             resourceTemplate.find(".btn-rent").attr("data-id", id);
 
             resourcesRow.append(resourceTemplate.html());
@@ -203,3 +217,24 @@ $(function () {
     App.init();
   });
 });
+
+function createAdvert() {
+  var name = document.getElementById("resourceName").value;
+  var image = document.getElementById("resourceImage").value;
+  var fromTimeStamp = document.getElementById("fromTimeStamp").value;
+  var toTimeStamp = document.getElementById("toTimeStamp").value;
+
+  console.log(resourceRentalContract);
+
+  resourceRentalContract.addResource(name, image, fromTimeStamp, toTimeStamp);
+
+  console.log("ADVERT " + name + "   " + image);
+  console.log("ADVERT fromTimeStamp" + new Date(fromTimeStamp).getTimeStamp());
+  console.log("ADVERT toTome" + new Date(toTimeStamp).getTimeStamp());
+}
+
+function convertToDateFormat(timeStamp) {
+  const dateObject = new Date(timeStamp * 1000);
+  var date = dateObject.toLocaleString();
+  return date;
+}

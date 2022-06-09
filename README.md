@@ -4,7 +4,7 @@ Decentralized Application for resource rental on a local blockchain
 
 Steps to run the project:
 
-Install Truffle globally
+Install Truffle globally:
 
 `npm install -g truffle`
 
