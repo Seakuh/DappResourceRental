@@ -101,5 +101,10 @@ contract ResourceRental {
         addResource("Theater", "images/room1.jpeg", "Rom, Italy");
         addResource("Server Room", "images/room1.jpeg", "Paris, France");
         addResource("Test Room", "images/room1.jpeg", "Barcelona, Spain");
+        addResource(
+            "Fancy Office",
+            "https://www.schulungszentrum-darmstadt.de/wp-content/uploads/2019/09/DSC1868.jpg",
+            "Berlin, Germany"
+        );
     }
 }
