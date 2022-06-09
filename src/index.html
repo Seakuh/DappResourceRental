@@ -31,8 +31,42 @@
         </div>
       </div>
 
+      <!-- show form if user is a university -->
+      <div
+        style="
+          margin: 5rem;
+          border: grey solid 0.1rem;
+          flex-wrap: wrap;
+          display: flex;
+          flex-direction: column;
+          align-content: center;
+        "
+        class="create-advert"
+      >
+        <h3>Create Advert</h3>
+        <br />
+        <br />
+
+        <form action="/action_page.php">
+          <label for="fname">Resource Name:</label><br />
+          <input type="text" id="name" name="name" /><br />
+          <label for="fname">Image:</label><br />
+          <input type="text" id="image" name="image" /><br />
+          <label for="fname">From:</label><br />
+          <input type="date" id="fromTime" name="fromTime" /><br />
+          <label for="lname">To:</label><br />
+          <input type="date" id="toTime" name="toTime" /><br /><br />
+          <br />
+          <br />
+
+          <input type="submit" value="Create advert" />
+        </form>
+        <hr />
+        <br />
+      </div>
+
       <div id="resourcesRow" class="row">
-        <!-- resourceS LOAD HERE -->
+        <!-- resource LOAD HERE -->
       </div>
     </div>
 

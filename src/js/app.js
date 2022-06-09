@@ -84,7 +84,6 @@ App = {
       // Restart Chrome if you are unable to receive this event
       // This is a known issue with Metamask
       // https://github.com/MetaMask/metamask-extension/issues/2393
-
       App.render();
     });
   },
@@ -107,6 +106,14 @@ App = {
 
     // Load contract data
     App.contracts.ResourceRental.deployed()
+      .then(function (instance) {
+        var isUniversity = instance.isSenderUniversity(1);
+
+        if (isUniversity) {
+          console.log("Is University");
+        }
+        return instance;
+      })
       .then(function (instance) {
         resourceContractInstance = instance;
         return resourceContractInstance.resourcesCount();
