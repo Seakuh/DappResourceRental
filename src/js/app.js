@@ -252,7 +252,13 @@ function createAdvert() {
     .then();
 }
 
-function rentResource() {}
+function rentResource(id) {
+  App.contracts.ResourceRental.deployed().then(function (instance) {
+    // var idData = id.getAttribute("data-id");
+    console.log(id);
+    return instance.rentResource(id, { from: currentAddress });
+  });
+}
 
 function convertToDateFormat(timeStamp) {
   const dateObject = new Date(timeStamp * 1000);

@@ -102,7 +102,12 @@
             <strong>To:</strong>: <span class="resource-toTime">MI-DO</span
             ><br /><br />
 
-            <button class="btn btn-default btn-rent" type="button" data-id="0">
+            <button
+              onclick="rentResource($(this).data('id'))"
+              class="btn btn-default btn-rent"
+              type="button"
+              data-id="0"
+            >
               rent
             </button>
           </div>
