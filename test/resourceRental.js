@@ -20,13 +20,32 @@ contract("ResourceRental", function (accounts) {
       .then(function (renter) {
         assert.equal(renter[0], 1, "contains the correct id");
         assert.equal(renter[1], "Student 1", "contains the correct name");
-        assert.equal(renter[2], 0, "contains the correct votes count");
+        assert.equal(renter[2], 0, "contains the correct renters count");
         return resourceRentalInstance.renters(2);
       })
       .then(function (renter) {
         assert.equal(renter[0], 2, "contains the correct id");
         assert.equal(renter[1], "Professor 1", "contains the correct name");
-        assert.equal(renter[2], 0, "contains the correct votes count");
+        assert.equal(renter[2], 0, "contains the correct renters count");
+      });
+  });
+
+  it("should add a resource", function () {
+    return ResourceRental.deployed()
+      .then(function (instance) {
+        resourceRentalInstance = instance;
+        resourceRentalInstance.addResource(
+          "Concert Hall",
+          "images/room1.jpeg",
+          "Mannheim, Germani",
+          "1654782938174",
+          "1655992478797",
+          { from: accounts[1] }
+        );
+        return instance.resourcesCount;
+      })
+      .then(function (resourceCount) {
+        assert.equal(resourceCount, 1, "Counter increases");
       });
   });
 });
