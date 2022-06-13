@@ -2,13 +2,17 @@
 pragma solidity >=0.4.22 <0.8.0;
 
 contract ResourceRental {
+    //----------------------------------------------------------
+    // Structs
+    //----------------------------------------------------------
+
     // Model a Rental
     struct Rental {
         string resourceName;
         uint256 bookingId;
         uint256 resourceId;
-        uint256 startTimestamp;
-        uint256 endTimestamp;
+        string startTimestamp;
+        string endTimestamp;
     }
 
     // Model a Renter
@@ -28,15 +32,6 @@ contract ResourceRental {
         string toTimeStamp;
     }
 
-    // Model a Resource Advert
-    struct ResourceAdvert {
-        uint256 advertId;
-        string resourceName;
-        string resourceImageUrl;
-        string fromTimeStamp;
-        string toTimeStamp;
-    }
-
     // Model a University
     struct University {
         uint256 universityId;
@@ -44,29 +39,45 @@ contract ResourceRental {
         address universityAddress;
     }
 
+    //----------------------------------------------------------
+    // Events
+    //----------------------------------------------------------
+
+    event RenterAdded(string _renterName, address _senderAddress);
+    event ResourceCreated(uint256 _id, address _creatorAddress);
+    event ResourceRented(
+        uint256 _resourceId,
+        string _fromTimeStamp,
+        string _toTimestamp
+    );
+    event UniversityAdded();
+
+    //----------------------------------------------------------
+    // Storage
+    //----------------------------------------------------------
+
     // Store renters
     // solidity generiert getter
     mapping(uint256 => Renter) public renters;
     mapping(uint256 => Resource) public resources;
-    mapping(uint256 => ResourceAdvert) public resourcesAdverts;
     mapping(uint256 => University) public universities;
+    mapping(uint256 => Rental) public rentals;
 
     // Store index
     uint256 public rentersCount;
     uint256 public resourcesCount;
     uint256 public resourcesAdvertCount;
     uint256 public universitiesCount;
+    uint256 public rentalsCount;
 
     // Store Rental
 
     // Read Rental
     string public candidate;
 
-    function addRenter(string memory _name) private {
-        // represent Id of the renter
-        rentersCount++;
-        renters[rentersCount] = Renter(rentersCount, _name, 0);
-    }
+    //----------------------------------------------------------
+    // Private Functions
+    //----------------------------------------------------------
 
     function addUniversity(string memory _name, address _address) private {
         // represent Id of the University
@@ -78,13 +89,25 @@ contract ResourceRental {
         );
     }
 
+    //----------------------------------------------------------
+    // Public Functions
+    //----------------------------------------------------------
+
+    function addRenter(string memory _name) public {
+        // represent Id of the renter
+        rentersCount++;
+        renters[rentersCount] = Renter(rentersCount, _name, 0);
+
+        emit RenterAdded(_name, msg.sender);
+    }
+
     function addResource(
         string memory _name,
         string memory _picture,
         string memory _location,
         string memory _fromTimeStamp,
         string memory _toTimeStamp
-    ) private {
+    ) public returns (bool) {
         // represent Id of the renter
         resourcesCount++;
         resources[resourcesCount] = Resource(
@@ -95,35 +118,7 @@ contract ResourceRental {
             _fromTimeStamp,
             _toTimeStamp
         );
-    }
-
-    function addResourceAdvert(
-        string memory _name,
-        string memory _image,
-        string memory _fromTimeStamp,
-        string memory _toTimeStamp
-    ) public {
-        // represent Id of the renter
-        resourcesAdvertCount++;
-        resourcesAdverts[resourcesAdvertCount] = ResourceAdvert(
-            resourcesCount,
-            _name,
-            _image,
-            _fromTimeStamp,
-            _toTimeStamp
-        );
-    }
-
-    // Store Rental -> from to free
-
-    // Fetch Rental
-
-    // Store Rental count
-
-    // isUniversity
-    modifier isUniversity() {
-        require(true, "Caller is no university");
-        _;
+        emit ResourceCreated(resourcesCount, msg.sender);
     }
 
     // making the function pure or view
@@ -132,6 +127,40 @@ contract ResourceRental {
     function isSenderUniversity(uint256 _id) public view returns (bool) {
         return msg.sender == universities[_id].universityAddress;
     }
+
+    function rentResource(uint256 _id) public {
+        Resource memory resource = resources[_id];
+
+        rentalsCount++;
+        rentals[rentalsCount] = Rental(
+            resource.name,
+            rentalsCount,
+            resource.resourceId,
+            resource.fromTimeStamp,
+            resource.toTimeStamp
+        );
+
+        delete resources[_id];
+
+        emit ResourceRented(_id, resource.fromTimeStamp, resource.toTimeStamp);
+    }
+
+    //----------------------------------------------------------
+    // Modifier
+    //----------------------------------------------------------
+
+    // isUniversity
+    modifier isUniversity(uint256 _id) {
+        require(
+            msg.sender == universities[_id].universityAddress,
+            "Caller is no university"
+        );
+        _;
+    }
+
+    //----------------------------------------------------------
+    // Constructor
+    //----------------------------------------------------------
 
     // Constructor
     constructor() public {

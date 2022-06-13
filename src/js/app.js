@@ -1,7 +1,8 @@
 // Template
 // from truffle example https://github.com/truffle-box/pet-shop-box
 var resourceRentalContract;
-
+var accountAddress;
+var currentAddress;
 App = {
   web3Provider: null,
   contracts: {},
@@ -38,7 +39,7 @@ App = {
       // If a web3 instance is already provided by Meta Mask.
       App.web3Provider = window.ethereum;
       web3 = new Web3(window.ethereum);
-      var currentAddress = web3.currentProvider.selectedAddress;
+      currentAddress = web3.currentProvider.selectedAddress;
       App.showUserAddress(currentAddress);
 
       window.ethereum.enable().catch((error) => {
@@ -59,6 +60,7 @@ App = {
 
   showUserAddress: function (address) {
     console.log(address);
+    accountAddress = address;
     var loaderAddress = $("#loaderAddress");
     loaderAddress.hide();
     return $("#accountAddress").html("Your Account: " + address);
@@ -136,6 +138,10 @@ App = {
 
         for (var i = 1; i <= resourcesCount; i++) {
           resourceContractInstance.resources(i).then(function (resource) {
+            console.log(resource);
+            if (!resource[1]) {
+              return;
+            }
             var id = resource[0];
             var name = resource[1];
             var picture = resource[2];
@@ -220,18 +226,33 @@ $(function () {
 
 function createAdvert() {
   var name = document.getElementById("resourceName").value;
-  var image = document.getElementById("resourceImage").value;
+  var imagePath = document.getElementById("resourceImage").value;
+  var location = document.getElementById("resourceLocation").value;
+
   var fromTimeStamp = document.getElementById("fromTimeStamp").value;
   var toTimeStamp = document.getElementById("toTimeStamp").value;
 
   console.log(resourceRentalContract);
 
-  resourceRentalContract.addResource(name, image, fromTimeStamp, toTimeStamp);
-
-  console.log("ADVERT " + name + "   " + image);
-  console.log("ADVERT fromTimeStamp" + new Date(fromTimeStamp).getTimeStamp());
-  console.log("ADVERT toTome" + new Date(toTimeStamp).getTimeStamp());
+  // Test function with truffle develop
+  // truffle(develop)> ResourceRental.deployed().then(function(i) {app = i})
+  // let instance = await ResourceRental.deployed()
+  // app.addResource("MesseZentrum","Essen","Munich","1654782938174","1655992478797")
+  App.contracts.ResourceRental.deployed()
+    .then(function (instance) {
+      return instance.addResource(
+        name,
+        imagePath,
+        location,
+        convertToDateFormat(fromTimeStamp),
+        convertToDateFormat(toTimeStamp),
+        { from: currentAddress }
+      );
+    })
+    .then();
 }
+
+function rentResource() {}
 
 function convertToDateFormat(timeStamp) {
   const dateObject = new Date(timeStamp * 1000);
