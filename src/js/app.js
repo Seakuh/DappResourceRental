@@ -259,14 +259,30 @@ function createAdvert() {
       // local storage and push it into it
       if (!JSON.parse(localStorage.getItem("UserRentals"))) {
         var events = [];
-        events.push(JSON.stringify(event));
+        events.push(
+          JSON.stringify({
+            ...event,
+            name,
+            imagePath,
+            location,
+            convertedFromTimeStamp,
+            convertedToTimeStamp,
+          })
+        );
         localStorage.setItem("UserRentals", events);
         return;
       }
       userRentalsFromLocalStorage.push(
         JSON.parse(localStorage.getItem("UserRentals"))
       );
-      userRentalsFromLocalStorage.push(event);
+      userRentalsFromLocalStorage.push({
+        ...event,
+        name,
+        imagePath,
+        location,
+        convertedFromTimeStamp,
+        convertedToTimeStamp,
+      });
       localStorage.setItem(
         "UserRentals",
         JSON.stringify(userRentalsFromLocalStorage)
