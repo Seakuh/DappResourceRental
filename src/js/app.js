@@ -247,7 +247,29 @@ function createAdvert() {
         { from: currentAddress }
       );
     })
-    .then();
+    .then(function (event) {
+      console.log("Event");
+      console.log(event);
+      var userRentalsFromLocalStorage = [];
+
+      // Push the new rental into the local storage
+      // if its the first rental create a new item in the
+      // local storage and push it into it
+      if (!JSON.parse(localStorage.getItem("UserRentals"))) {
+        var events = [];
+        events.push(JSON.stringify(event));
+        localStorage.setItem("UserRentals", events);
+        return;
+      }
+      userRentalsFromLocalStorage.push(
+        JSON.parse(localStorage.getItem("UserRentals"))
+      );
+      userRentalsFromLocalStorage.push(event);
+      localStorage.setItem(
+        "UserRentals",
+        JSON.stringify(userRentalsFromLocalStorage)
+      );
+    });
 }
 
 function rentResource(id) {
