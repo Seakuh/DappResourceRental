@@ -232,8 +232,6 @@ function createAdvert() {
   var fromTimeStamp = document.getElementById("fromTimeStamp").value;
   var toTimeStamp = document.getElementById("toTimeStamp").value;
 
-  console.log(resourceRentalContract);
-
   // Test function with truffle develop
   // truffle(develop)> ResourceRental.deployed().then(function(i) {app = i})
   // let instance = await ResourceRental.deployed()
@@ -244,8 +242,8 @@ function createAdvert() {
         name,
         imagePath,
         location,
-        convertToDateFormat(fromTimeStamp),
-        convertToDateFormat(toTimeStamp),
+        convertToTimeStamp(fromTimeStamp),
+        convertToTimeStamp(toTimeStamp),
         { from: currentAddress }
       );
     })
@@ -260,8 +258,13 @@ function rentResource(id) {
   });
 }
 
-function convertToDateFormat(timeStamp) {
-  const dateObject = new Date(timeStamp * 1000);
-  var date = dateObject.toLocaleString();
+function convertToDateFormat(timestamp) {
+  var date = new Date(timestamp * 1000);
+  return date;
+}
+
+function convertToTimeStamp(timeStamp) {
+  const dateObject = new Date(timeStamp);
+  var date = dateObject.getTime();
   return date;
 }
