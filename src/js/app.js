@@ -232,6 +232,8 @@ function createAdvert() {
   var fromTimeStamp = document.getElementById("fromTimeStamp").value;
   var toTimeStamp = document.getElementById("toTimeStamp").value;
 
+  var convertedFromTimeStamp = convertToTimeStamp(fromTimeStamp);
+  var convertedToTimeStamp = convertToTimeStamp(toTimeStamp);
   // Test function with truffle develop
   // truffle(develop)> ResourceRental.deployed().then(function(i) {app = i})
   // let instance = await ResourceRental.deployed()
@@ -242,8 +244,8 @@ function createAdvert() {
         name,
         imagePath,
         location,
-        convertToTimeStamp(fromTimeStamp),
-        convertToTimeStamp(toTimeStamp),
+        convertedFromTimeStamp,
+        convertedToTimeStamp,
         { from: currentAddress }
       );
     })
