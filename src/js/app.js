@@ -193,21 +193,6 @@ App = {
      */
   },
 
-  showUserRentals: function () {
-    var qrcode = new QRCode("test", {
-      text: "http://jindo.dev.naver.com/collie",
-      width: 128,
-      height: 128,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H,
-    });
-    new QRCode(
-      document.getElementById("qrcode"),
-      "http://jindo.dev.naver.com/collie"
-    );
-  },
-
   handlerent: function (event) {
     event.preventDefault();
 
@@ -239,60 +224,64 @@ function createAdvert() {
   // truffle(develop)> ResourceRental.deployed().then(function(i) {app = i})
   // let instance = await ResourceRental.deployed()
   // app.addResource("MesseZentrum","Essen","Munich","1654782938174","1655992478797")
-  App.contracts.ResourceRental.deployed()
-    .then(function (instance) {
-      return instance.addResource(
-        name,
-        imagePath,
-        location,
-        convertedFromTimeStamp,
-        convertedToTimeStamp,
-        { from: currentAddress }
-      );
-    })
-    .then(function (event) {
-      var userRentalsFromLocalStorage = [];
-
-      // Push the new rental into the local storage
-      // if its the first rental create a new item in the
-      // local storage and push it into it
-      if (!JSON.parse(localStorage.getItem("UserRentals"))) {
-        var events = [];
-        events.push(
-          JSON.stringify({
-            ...event,
-            name,
-            imagePath,
-            location,
-            convertedFromTimeStamp,
-            convertedToTimeStamp,
-          })
-        );
-        localStorage.setItem("UserRentals", events);
-        return;
-      }
-      userRentalsFromLocalStorage.push(
-        JSON.parse(localStorage.getItem("UserRentals"))
-      );
-      userRentalsFromLocalStorage.push({
-        ...event,
-        name,
-        imagePath,
-        location,
-        convertedFromTimeStamp,
-        convertedToTimeStamp,
-      });
-      localStorage.setItem(
-        "UserRentals",
-        JSON.stringify(userRentalsFromLocalStorage)
-      );
-    });
+  App.contracts.ResourceRental.deployed().then(function (instance) {
+    return instance.addResource(
+      name,
+      imagePath,
+      location,
+      convertedFromTimeStamp,
+      convertedToTimeStamp,
+      { from: currentAddress }
+    );
+  });
 }
 
 function rentResource(id) {
   App.contracts.ResourceRental.deployed().then(function (instance) {
     // var idData = id.getAttribute("data-id");
-    return instance.rentResource(id, { from: currentAddress });
+    return instance
+      .rentResource(id, { from: currentAddress })
+      .then(function (event) {
+        var userRentalsFromLocalStorage = [];
+
+        // Push the new rental into the local storage
+        // if its the first rental create a new item in the
+        // local storage and push it into it
+        if (!JSON.parse(localStorage.getItem("UserRentals"))) {
+          const rental = {
+            event,
+            name,
+            location,
+            fromTimeStamp,
+            toTimeStamp,
+          };
+
+          console.log(rental);
+
+          var events = [];
+          events.push(JSON.stringify(rental));
+          localStorage.setItem("UserRentals", events);
+          return;
+        }
+
+        userRentalsFromLocalStorage.push(
+          JSON.parse(localStorage.getItem("UserRentals"))
+        );
+
+        const rental = {
+          event,
+          name,
+          location,
+          fromTimeStamp,
+          toTimeStamp,
+        };
+
+        userRentalsFromLocalStorage.push(rental);
+        localStorage.setItem(
+          "UserRentals",
+          JSON.stringify(userRentalsFromLocalStorage)
+        );
+      });
   });
 }
 
