@@ -1,8 +1,10 @@
 // Template
 // from truffle example https://github.com/truffle-box/pet-shop-box
+
 var resourceRentalContract;
 var accountAddress;
 var currentAddress;
+
 App = {
   web3Provider: null,
   contracts: {},
@@ -52,7 +54,6 @@ App = {
         "http://localhost:7545"
       );
       web3 = new Web3(App.web3Provider);
-      console.log("Address" + window.web3.currentProvider.selectedAddress);
       App.showUserAddress(currentAddress);
     }
     return App.initContract();
@@ -69,14 +70,12 @@ App = {
   // Load up contract into Fronted application
   // to interact with it
   initContract: function () {
-    console.log("init Contract");
     $.getJSON("ResourceRental.json", function (resource) {
       // Instantiate a new truffle contract from the artifact
       App.contracts.ResourceRental = TruffleContract(resource);
       // Connect provider to interact with contract
       App.contracts.ResourceRental.setProvider(App.web3Provider);
 
-      console.log("init Contract...");
       return App.listenForEvents();
     });
   },
@@ -126,8 +125,6 @@ App = {
         return resourceContractInstance.resourcesCount();
       })
       .then(function (resourcesCount) {
-        console.log(resourcesCount);
-        console.log(resourceContractInstance.resourcesCount);
         var resourcesResults = $("#resroucesResults");
         // resourcesCount.empty();
 
@@ -151,8 +148,6 @@ App = {
 
             var fromDateFormatted = convertToDateFormat(fromTimeStamp);
             var toDateFormatted = convertToDateFormat(toTimeStamp);
-
-            console.log(fromDateFormatted + toDateFormatted);
 
             var resourcesRow = $("#resourcesRow");
             var resourceTemplate = $("#resourceTemplate");
@@ -207,6 +202,21 @@ App = {
      */
   },
 
+  showUserRentals: function () {
+    var qrcode = new QRCode("test", {
+      text: "http://jindo.dev.naver.com/collie",
+      width: 128,
+      height: 128,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+    new QRCode(
+      document.getElementById("qrcode"),
+      "http://jindo.dev.naver.com/collie"
+    );
+  },
+
   handlerent: function (event) {
     event.preventDefault();
 
@@ -250,8 +260,6 @@ function createAdvert() {
       );
     })
     .then(function (event) {
-      console.log("Event");
-      console.log(event);
       var userRentalsFromLocalStorage = [];
 
       // Push the new rental into the local storage
@@ -293,7 +301,6 @@ function createAdvert() {
 function rentResource(id) {
   App.contracts.ResourceRental.deployed().then(function (instance) {
     // var idData = id.getAttribute("data-id");
-    console.log(id);
     return instance.rentResource(id, { from: currentAddress });
   });
 }
