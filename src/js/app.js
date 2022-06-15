@@ -43,11 +43,6 @@ App = {
       web3 = new Web3(window.ethereum);
       currentAddress = web3.currentProvider.selectedAddress;
       App.showUserAddress(currentAddress);
-
-      window.ethereum.enable().catch((error) => {
-        // User denied account access
-        console.log(error);
-      });
     } else {
       // Specify default instance if no web3 instance provided
       App.web3Provider = new Web3.providers.HttpProvider(
@@ -60,7 +55,6 @@ App = {
   },
 
   showUserAddress: function (address) {
-    console.log(address);
     accountAddress = address;
     var loaderAddress = $("#loaderAddress");
     loaderAddress.hide();
@@ -131,11 +125,8 @@ App = {
         var resourcesSelect = $("#resourcesSelect");
         // resourcesCount.empty();
 
-        console.log("ResourcesCount: " + resourcesCount);
-
         for (var i = 1; i <= resourcesCount; i++) {
           resourceContractInstance.resources(i).then(function (resource) {
-            console.log(resource);
             if (!resource[1]) {
               return;
             }
