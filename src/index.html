@@ -73,8 +73,29 @@
         <hr />
         <br />
       </div>
+
+      <!-- show the rentals of the user -->
+      <div id="userRentalsRow" class="row">
+        <!-- resource LOAD HERE -->
+      </div>
+
       <div id="rentalsRow" class="row">
         <!-- resource LOAD HERE -->
+      </div>
+
+      <div>
+        <ul class="list-group" id="userRentalsTemplate" style="display: none">
+          <li class="list-group-item">
+            New
+            <span class="badge">12</span>
+            <div id="qrcode"></div>
+          </li>
+          <li class="list-group-item">
+            New
+            <span class="badge">12</span>
+            <div id="qrcode1"></div>
+          </li>
+        </ul>
       </div>
 
       <div id="resourcesRow" class="row">
@@ -125,5 +146,26 @@
     <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/qrcode.js"></script>
+    <script src="js/qrcode.min.js"></script>
+    <script type="text/javascript">
+      // var userRentals = JSON.parse(localStorage.getItem("UserRentals"));
+      // console.log(userRentals);
+      // if (userRentals) {
+      //   renderUserRentals();
+      // }
+
+      // function renderUserRentals() {
+      //   console.log(userRentals[0]);
+      //   for (var i = 0; i < userRentals.length; i++) {
+      //     var eventHash = userRentals[i].event.receipt.blockHash;
+      //     var name = ;
+      //     var fromTimeStamp = ;
+      //     var toTimeStamp = ;
+
+      //     console.log(eventHash);
+      //   }
+      // }
+    </script>
   </body>
 </html>

@@ -89,6 +89,7 @@ App = {
     var loader = $("#loader");
     var content = $("#content");
 
+    App.renderUserReantals();
     loader.show();
     content.hide();
 
@@ -170,14 +171,6 @@ App = {
           });
         }
       })
-      .then(function (hasVoted) {
-        // Do not allow a user to vote
-        if (hasVoted) {
-          $("form").hide();
-        }
-        loader.hide();
-        content.show();
-      })
       .catch(function (error) {
         console.warn(error);
       });
@@ -191,6 +184,15 @@ App = {
     /*
      * Replace me...
      */
+  },
+
+  renderUserReantals: function () {
+    const localStorageEvents = localStorage.getItem("UserRentals");
+    console.log(localStorageEvents);
+
+    if (localStorageEvents) {
+      console.log("Hi");
+    }
   },
 
   handlerent: function (event) {
@@ -242,47 +244,17 @@ function rentResource(id) {
     return instance
       .rentResource(id, { from: currentAddress })
       .then(function (event) {
-        var userRentalsFromLocalStorage = [];
-
-        // Push the new rental into the local storage
-        // if its the first rental create a new item in the
-        // local storage and push it into it
-        if (!JSON.parse(localStorage.getItem("UserRentals"))) {
-          const rental = {
-            event,
-            name,
-            location,
-            fromTimeStamp,
-            toTimeStamp,
-          };
-
-          console.log(rental);
-
-          var events = [];
-          events.push(JSON.stringify(rental));
-          localStorage.setItem("UserRentals", events);
-          return;
-        }
-
-        userRentalsFromLocalStorage.push(
-          JSON.parse(localStorage.getItem("UserRentals"))
-        );
-
-        const rental = {
-          event,
-          name,
-          location,
-          fromTimeStamp,
-          toTimeStamp,
-        };
-
-        userRentalsFromLocalStorage.push(rental);
-        localStorage.setItem(
-          "UserRentals",
-          JSON.stringify(userRentalsFromLocalStorage)
-        );
+        saveEventToLocalStorage(event);
       });
   });
+}
+
+function saveEventToLocalStorage(event) {
+  var oldEvents = JSON.parse(localStorage.getItem("UserRentals")) || [];
+
+  oldEvents.push(event);
+
+  localStorage.setItem("UserRentals", JSON.stringify(oldEvents));
 }
 
 function convertToDateFormat(timestamp) {
