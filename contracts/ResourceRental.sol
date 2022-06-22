@@ -79,7 +79,9 @@ contract ResourceRental {
     // Private Functions
     //----------------------------------------------------------
 
-    function addUniversity(string memory _name, address _address) private {
+    function initializeUniversity(string memory _name, address _address)
+        private
+    {
         // represent Id of the University
         universitiesCount++;
         universities[universitiesCount] = University(
@@ -90,8 +92,24 @@ contract ResourceRental {
     }
 
     //----------------------------------------------------------
-    // Public Functions
+    // public Functions
     //----------------------------------------------------------
+
+    function addUniversity(
+        uint256 _universityId,
+        string memory _name,
+        address _newUniversityAddress
+    ) private {
+        require(msg.sender == universities[_universityId].universityAddress);
+
+        // represent Id of the University
+        universitiesCount++;
+        universities[universitiesCount] = University(
+            universitiesCount,
+            _name,
+            _newUniversityAddress
+        );
+    }
 
     function addRenter(string memory _name) public {
         // represent Id of the renter
@@ -107,7 +125,7 @@ contract ResourceRental {
         string memory _location,
         string memory _fromTimeStamp,
         string memory _toTimeStamp
-    ) public returns (bool) {
+    ) public {
         // represent Id of the renter
         resourcesCount++;
         resources[resourcesCount] = Resource(
@@ -217,7 +235,7 @@ contract ResourceRental {
         //     "Hochschule Furtwangen",
         //     0x9BB542Fa2BBC47dF6d5Da1F38dc78a186EA89CaB
         // );
-        addUniversity(
+        initializeUniversity(
             "Universität Mannheim",
             0xDeDE610A052Cd63D055B1e957b1952525d924F7e
         );
