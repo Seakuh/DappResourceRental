@@ -57,6 +57,9 @@ App = {
   showUserAddress: function (address) {
     accountAddress = address;
     var loaderAddress = $("#loaderAddress");
+    if (!address) {
+      address = "login to Metamask";
+    }
     loaderAddress.hide();
     return $("#accountAddress").html("Your Account: " + address);
   },
@@ -187,11 +190,17 @@ App = {
   },
 
   renderUserReantals: function () {
-    const localStorageEvents = localStorage.getItem("UserRentals");
-    console.log(localStorageEvents);
+    var events = JSON.parse(localStorage.getItem("UserRentals")) || [];
+    var resourcesRow = $("#userRentalsRow");
+    var resourceTemplate = $("#userRentalsTemplate");
+    console.log(events);
 
-    if (localStorageEvents) {
-      console.log("Hi");
+    if (events) {
+      for (var i = 1; i <= events.length; i++) {
+        var tx = events[i - 1].tx;
+        resourceTemplate.find(".event-transaction-number").text(tx);
+        resourcesRow.append(resourceTemplate.html());
+      }
     }
   },
 
@@ -222,6 +231,7 @@ function createAdvert() {
 
   var convertedFromTimeStamp = convertToTimeStamp(fromTimeStamp);
   var convertedToTimeStamp = convertToTimeStamp(toTimeStamp);
+
   // Test function with truffle develop
   // truffle(develop)> ResourceRental.deployed().then(function(i) {app = i})
   // let instance = await ResourceRental.deployed()
@@ -231,8 +241,8 @@ function createAdvert() {
       name,
       imagePath,
       location,
-      convertedFromTimeStamp,
-      convertedToTimeStamp,
+      convertedFromTimeStamp.toString(),
+      convertedToTimeStamp.toString(),
       { from: currentAddress }
     );
   });
