@@ -46,7 +46,7 @@ App = {
     } else {
       // Specify default instance if no web3 instance provided
       App.web3Provider = new Web3.providers.HttpProvider(
-        "http://localhost:7545"
+        "http://localhost:5745"
       );
       web3 = new Web3(App.web3Provider);
       App.showUserAddress(currentAddress);
@@ -141,8 +141,8 @@ App = {
             var fromTimeStamp = resource[4];
             var toTimeStamp = resource[5];
 
-            var fromDateFormatted = convertToDateFormat(fromTimeStamp);
-            var toDateFormatted = convertToDateFormat(toTimeStamp);
+            var fromDateFormatted = new Date(fromTimeStamp * 1);
+            var toDateFormatted = new Date(toTimeStamp * 1);
 
             var resourcesRow = $("#resourcesRow");
             var resourceTemplate = $("#resourceTemplate");
@@ -229,8 +229,21 @@ function createAdvert() {
   var fromTimeStamp = document.getElementById("fromTimeStamp").value;
   var toTimeStamp = document.getElementById("toTimeStamp").value;
 
+  console.log(fromTimeStamp);
+  console.log(toTimeStamp);
+
   var convertedFromTimeStamp = convertToTimeStamp(fromTimeStamp);
   var convertedToTimeStamp = convertToTimeStamp(toTimeStamp);
+
+  console.log(convertedFromTimeStamp);
+  console.log(convertedToTimeStamp);
+
+  if (!imagePath) {
+    imagePath =
+      "https://cdn.prod.www.spiegel.de/images/6bbd78cd-0001-0004-0000-000001454027_w1600_r1.4790419161676647_fpx33.81_fpy50.jpg";
+  }
+
+  console.log(imagePath);
 
   // Test function with truffle develop
   // truffle(develop)> ResourceRental.deployed().then(function(i) {app = i})
@@ -268,7 +281,7 @@ function saveEventToLocalStorage(event) {
 }
 
 function convertToDateFormat(timestamp) {
-  var date = new Date(timestamp * 1000);
+  var date = new Date(timestamp);
   return date;
 }
 
