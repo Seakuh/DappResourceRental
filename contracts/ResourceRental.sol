@@ -30,6 +30,7 @@ contract ResourceRental {
         string location;
         string fromTimeStamp;
         string toTimeStamp;
+        // uint8[3] requiredTraining;
     }
 
     // Model a University
@@ -76,7 +77,7 @@ contract ResourceRental {
     string public candidate;
 
     //----------------------------------------------------------
-    // Private Functions
+    // private Functions
     //----------------------------------------------------------
 
     function initializeUniversity(string memory _name, address _address)
@@ -125,7 +126,10 @@ contract ResourceRental {
         string memory _location,
         string memory _fromTimeStamp,
         string memory _toTimeStamp
-    ) public {
+    ) public // uint8[] memory _requiredTraining
+    {
+        // require();
+
         // represent Id of the renter
         resourcesCount++;
         resources[resourcesCount] = Resource(
@@ -135,6 +139,7 @@ contract ResourceRental {
             _location,
             _fromTimeStamp,
             _toTimeStamp
+            // _requiredTraining
         );
         emit ResourceCreated(resourcesCount, msg.sender);
     }
@@ -194,6 +199,7 @@ contract ResourceRental {
             "1654782938174",
             "1655992478797"
         );
+
         addResource(
             "Concert Hall",
             "images/room1.jpeg",
