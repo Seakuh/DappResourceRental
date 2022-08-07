@@ -1,0 +1,1113 @@
+{
+  "contractName": "TrainingContract",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_trainingId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_memberAddress",
+          "type": "address"
+        }
+      ],
+      "name": "hasRequiredTraining",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_universityId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_memberAddress",
+          "type": "address"
+        }
+      ],
+      "name": "isUniversityMember",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_trainingId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_memberAddress\",\"type\":\"address\"}],\"name\":\"hasRequiredTraining\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_universityId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_memberAddress\",\"type\":\"address\"}],\"name\":\"isUniversityMember\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/test.sol\":\"TrainingContract\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/test.sol\":{\"keccak256\":\"0x553bf2a346df40b0b3ef752cd167906d713e955aff1657d98318cefba667b822\",\"urls\":[\"bzz-raw://cefb7de6bab05216cc6054148cb0853816a4b4016b02c97ecd0821a3a4f74a15\",\"dweb:/ipfs/Qmdo8GnrYpRtVrxPdFDnEa1mtFvwzkiEiz39soLbDwk8ae\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061010a806100206000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c8063c1b915b7146037578063f9efc3e5146082575b600080fd5b608060048036036040811015604b57600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505060cd565b005b60cb60048036036040811015609657600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505060d1565b005b5050565b505056fea265627a7a7231582061e09e3d1ea95db90a169a5786d8ca4ca4673f0134e1e91ca7d2d505e9d5ecbd64736f6c63430005100032",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c8063c1b915b7146037578063f9efc3e5146082575b600080fd5b608060048036036040811015604b57600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505060cd565b005b60cb60048036036040811015609657600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505060d1565b005b5050565b505056fea265627a7a7231582061e09e3d1ea95db90a169a5786d8ca4ca4673f0134e1e91ca7d2d505e9d5ecbd64736f6c63430005100032",
+  "sourceMap": "33:561:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;33:561:1;;;;;;;",
+  "deployedSourceMap": "33:561:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;33:561:1;;;;;;;;;;;;;;;;;;;;;;;;395:95;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;395:95:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;496:96;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;496:96:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;395:95;;;:::o;496:96::-;;;:::o",
+  "source": "pragma solidity >=0.4.0 <0.6.0;\n\ncontract TrainingContract {\n    struct Training {\n        uint256 trainingId;\n        address instpector;\n    }\n\n    struct Ressource {\n        uint256 trainingId;\n        Training[] requiredTraining;\n    }\n\n    struct Member {\n        Training[] PassedTrainings;\n    }\n\n    mapping(uint256 => Ressource) ressources;\n    mapping(uint256 => Member) members;\n\n    function hasRequiredTraining(uint256 _trainingId, address _memberAddress)\n        public\n    {}\n\n    function isUniversityMember(uint256 _universityId, address _memberAddress)\n        public\n    {}\n}\n",
+  "sourcePath": "/home/dizzle/Dev/Dapp/contracts/test.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/test.sol",
+    "exportedSymbols": {
+      "TrainingContract": [
+        74
+      ]
+    },
+    "id": 75,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".0",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:31:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 74,
+        "linearizedBaseContracts": [
+          74
+        ],
+        "name": "TrainingContract",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "TrainingContract.Training",
+            "id": 39,
+            "members": [
+              {
+                "constant": false,
+                "id": 36,
+                "name": "trainingId",
+                "nodeType": "VariableDeclaration",
+                "scope": 39,
+                "src": "91:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 35,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "91:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 38,
+                "name": "instpector",
+                "nodeType": "VariableDeclaration",
+                "scope": 39,
+                "src": "119:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 37,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "119:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Training",
+            "nodeType": "StructDefinition",
+            "scope": 74,
+            "src": "65:79:1",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "TrainingContract.Ressource",
+            "id": 45,
+            "members": [
+              {
+                "constant": false,
+                "id": 41,
+                "name": "trainingId",
+                "nodeType": "VariableDeclaration",
+                "scope": 45,
+                "src": "177:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 40,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "177:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 44,
+                "name": "requiredTraining",
+                "nodeType": "VariableDeclaration",
+                "scope": 45,
+                "src": "205:27:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Training_$39_storage_$dyn_storage_ptr",
+                  "typeString": "struct TrainingContract.Training[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 42,
+                    "name": "Training",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 39,
+                    "src": "205:8:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Training_$39_storage_ptr",
+                      "typeString": "struct TrainingContract.Training"
+                    }
+                  },
+                  "id": 43,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "205:10:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Training_$39_storage_$dyn_storage_ptr",
+                    "typeString": "struct TrainingContract.Training[]"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Ressource",
+            "nodeType": "StructDefinition",
+            "scope": 74,
+            "src": "150:89:1",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "TrainingContract.Member",
+            "id": 49,
+            "members": [
+              {
+                "constant": false,
+                "id": 48,
+                "name": "PassedTrainings",
+                "nodeType": "VariableDeclaration",
+                "scope": 49,
+                "src": "269:26:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Training_$39_storage_$dyn_storage_ptr",
+                  "typeString": "struct TrainingContract.Training[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "contractScope": null,
+                    "id": 46,
+                    "name": "Training",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 39,
+                    "src": "269:8:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Training_$39_storage_ptr",
+                      "typeString": "struct TrainingContract.Training"
+                    }
+                  },
+                  "id": 47,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "269:10:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Training_$39_storage_$dyn_storage_ptr",
+                    "typeString": "struct TrainingContract.Training[]"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Member",
+            "nodeType": "StructDefinition",
+            "scope": 74,
+            "src": "245:57:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 53,
+            "name": "ressources",
+            "nodeType": "VariableDeclaration",
+            "scope": 74,
+            "src": "308:40:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Ressource_$45_storage_$",
+              "typeString": "mapping(uint256 => struct TrainingContract.Ressource)"
+            },
+            "typeName": {
+              "id": 52,
+              "keyType": {
+                "id": 50,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "316:7:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "308:29:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Ressource_$45_storage_$",
+                "typeString": "mapping(uint256 => struct TrainingContract.Ressource)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 51,
+                "name": "Ressource",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 45,
+                "src": "327:9:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Ressource_$45_storage_ptr",
+                  "typeString": "struct TrainingContract.Ressource"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 57,
+            "name": "members",
+            "nodeType": "VariableDeclaration",
+            "scope": 74,
+            "src": "354:34:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Member_$49_storage_$",
+              "typeString": "mapping(uint256 => struct TrainingContract.Member)"
+            },
+            "typeName": {
+              "id": 56,
+              "keyType": {
+                "id": 54,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "362:7:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "354:26:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Member_$49_storage_$",
+                "typeString": "mapping(uint256 => struct TrainingContract.Member)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 55,
+                "name": "Member",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 49,
+                "src": "373:6:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Member_$49_storage_ptr",
+                  "typeString": "struct TrainingContract.Member"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 64,
+              "nodeType": "Block",
+              "src": "488:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 65,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "hasRequiredTraining",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 62,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 59,
+                  "name": "_trainingId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 65,
+                  "src": "424:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 58,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "424:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 61,
+                  "name": "_memberAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 65,
+                  "src": "445:22:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 60,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "445:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "423:45:1"
+            },
+            "returnParameters": {
+              "id": 63,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "488:0:1"
+            },
+            "scope": 74,
+            "src": "395:95:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 72,
+              "nodeType": "Block",
+              "src": "590:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 73,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isUniversityMember",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 70,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 67,
+                  "name": "_universityId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 73,
+                  "src": "524:21:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 66,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "524:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 69,
+                  "name": "_memberAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 73,
+                  "src": "547:22:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 68,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "547:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "523:47:1"
+            },
+            "returnParameters": {
+              "id": 71,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "590:0:1"
+            },
+            "scope": 74,
+            "src": "496:96:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 75,
+        "src": "33:561:1"
+      }
+    ],
+    "src": "0:595:1"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/test.sol",
+      "exportedSymbols": {
+        "TrainingContract": [
+          74
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".0",
+            "<",
+            "0.6",
+            ".0"
+          ]
+        },
+        "id": 34,
+        "name": "PragmaDirective",
+        "src": "0:31:1"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            74
+          ],
+          "name": "TrainingContract",
+          "scope": 75
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "TrainingContract.Training",
+              "name": "Training",
+              "scope": 74,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "trainingId",
+                  "scope": 39,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 35,
+                    "name": "ElementaryTypeName",
+                    "src": "91:7:1"
+                  }
+                ],
+                "id": 36,
+                "name": "VariableDeclaration",
+                "src": "91:18:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "instpector",
+                  "scope": 39,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 37,
+                    "name": "ElementaryTypeName",
+                    "src": "119:7:1"
+                  }
+                ],
+                "id": 38,
+                "name": "VariableDeclaration",
+                "src": "119:18:1"
+              }
+            ],
+            "id": 39,
+            "name": "StructDefinition",
+            "src": "65:79:1"
+          },
+          {
+            "attributes": {
+              "canonicalName": "TrainingContract.Ressource",
+              "name": "Ressource",
+              "scope": 74,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "trainingId",
+                  "scope": 45,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 40,
+                    "name": "ElementaryTypeName",
+                    "src": "177:7:1"
+                  }
+                ],
+                "id": 41,
+                "name": "VariableDeclaration",
+                "src": "177:18:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "requiredTraining",
+                  "scope": 45,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct TrainingContract.Training[]",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "length": null,
+                      "type": "struct TrainingContract.Training[]"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Training",
+                          "referencedDeclaration": 39,
+                          "type": "struct TrainingContract.Training"
+                        },
+                        "id": 42,
+                        "name": "UserDefinedTypeName",
+                        "src": "205:8:1"
+                      }
+                    ],
+                    "id": 43,
+                    "name": "ArrayTypeName",
+                    "src": "205:10:1"
+                  }
+                ],
+                "id": 44,
+                "name": "VariableDeclaration",
+                "src": "205:27:1"
+              }
+            ],
+            "id": 45,
+            "name": "StructDefinition",
+            "src": "150:89:1"
+          },
+          {
+            "attributes": {
+              "canonicalName": "TrainingContract.Member",
+              "name": "Member",
+              "scope": 74,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "PassedTrainings",
+                  "scope": 49,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct TrainingContract.Training[]",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "length": null,
+                      "type": "struct TrainingContract.Training[]"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Training",
+                          "referencedDeclaration": 39,
+                          "type": "struct TrainingContract.Training"
+                        },
+                        "id": 46,
+                        "name": "UserDefinedTypeName",
+                        "src": "269:8:1"
+                      }
+                    ],
+                    "id": 47,
+                    "name": "ArrayTypeName",
+                    "src": "269:10:1"
+                  }
+                ],
+                "id": 48,
+                "name": "VariableDeclaration",
+                "src": "269:26:1"
+              }
+            ],
+            "id": 49,
+            "name": "StructDefinition",
+            "src": "245:57:1"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "ressources",
+              "scope": 74,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(uint256 => struct TrainingContract.Ressource)",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(uint256 => struct TrainingContract.Ressource)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 50,
+                    "name": "ElementaryTypeName",
+                    "src": "316:7:1"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Ressource",
+                      "referencedDeclaration": 45,
+                      "type": "struct TrainingContract.Ressource"
+                    },
+                    "id": 51,
+                    "name": "UserDefinedTypeName",
+                    "src": "327:9:1"
+                  }
+                ],
+                "id": 52,
+                "name": "Mapping",
+                "src": "308:29:1"
+              }
+            ],
+            "id": 53,
+            "name": "VariableDeclaration",
+            "src": "308:40:1"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "members",
+              "scope": 74,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(uint256 => struct TrainingContract.Member)",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(uint256 => struct TrainingContract.Member)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 54,
+                    "name": "ElementaryTypeName",
+                    "src": "362:7:1"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Member",
+                      "referencedDeclaration": 49,
+                      "type": "struct TrainingContract.Member"
+                    },
+                    "id": 55,
+                    "name": "UserDefinedTypeName",
+                    "src": "373:6:1"
+                  }
+                ],
+                "id": 56,
+                "name": "Mapping",
+                "src": "354:26:1"
+              }
+            ],
+            "id": 57,
+            "name": "VariableDeclaration",
+            "src": "354:34:1"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "hasRequiredTraining",
+              "scope": 74,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_trainingId",
+                      "scope": 65,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 58,
+                        "name": "ElementaryTypeName",
+                        "src": "424:7:1"
+                      }
+                    ],
+                    "id": 59,
+                    "name": "VariableDeclaration",
+                    "src": "424:19:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_memberAddress",
+                      "scope": 65,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 60,
+                        "name": "ElementaryTypeName",
+                        "src": "445:7:1"
+                      }
+                    ],
+                    "id": 61,
+                    "name": "VariableDeclaration",
+                    "src": "445:22:1"
+                  }
+                ],
+                "id": 62,
+                "name": "ParameterList",
+                "src": "423:45:1"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 63,
+                "name": "ParameterList",
+                "src": "488:0:1"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 64,
+                "name": "Block",
+                "src": "488:2:1"
+              }
+            ],
+            "id": 65,
+            "name": "FunctionDefinition",
+            "src": "395:95:1"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isUniversityMember",
+              "scope": 74,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_universityId",
+                      "scope": 73,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 66,
+                        "name": "ElementaryTypeName",
+                        "src": "524:7:1"
+                      }
+                    ],
+                    "id": 67,
+                    "name": "VariableDeclaration",
+                    "src": "524:21:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_memberAddress",
+                      "scope": 73,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 68,
+                        "name": "ElementaryTypeName",
+                        "src": "547:7:1"
+                      }
+                    ],
+                    "id": 69,
+                    "name": "VariableDeclaration",
+                    "src": "547:22:1"
+                  }
+                ],
+                "id": 70,
+                "name": "ParameterList",
+                "src": "523:47:1"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 71,
+                "name": "ParameterList",
+                "src": "590:0:1"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 72,
+                "name": "Block",
+                "src": "590:2:1"
+              }
+            ],
+            "id": 73,
+            "name": "FunctionDefinition",
+            "src": "496:96:1"
+          }
+        ],
+        "id": 74,
+        "name": "ContractDefinition",
+        "src": "33:561:1"
+      }
+    ],
+    "id": 75,
+    "name": "SourceUnit",
+    "src": "0:595:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2022-08-07T20:57:07.364Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

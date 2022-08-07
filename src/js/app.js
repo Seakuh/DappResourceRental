@@ -42,7 +42,12 @@ App = {
       App.web3Provider = window.ethereum;
       web3 = new Web3(window.ethereum);
       currentAddress = web3.currentProvider.selectedAddress;
-      App.showUserAddress(currentAddress);
+
+      $.getJSON("ResourceRental.json", function (ResourceRentalBloxberg) {
+        const networkId = web3.eth.net.getId().then();
+        const instance = new web3.eth.Contract();
+      }),
+        App.showUserAddress(currentAddress);
     } else {
       // Specify default instance if no web3 instance provided
       App.web3Provider = new Web3.providers.HttpProvider(
@@ -72,6 +77,21 @@ App = {
       App.contracts.ResourceRental = TruffleContract(resource);
       // Connect provider to interact with contract
       App.contracts.ResourceRental.setProvider(App.web3Provider);
+
+      return App.initTrainingValidateContract();
+    });
+  },
+
+  initTrainingValidateContract: function () {
+    $.getJSON("TrainingValidate.json", function (resource) {
+      // Instantiate a new truffle contract from the artifact
+      App.contracts.TrainingContract = TruffleContract(resource);
+      // Connect provider to interact with contract
+      App.contracts.TrainingContract.setProvider(App.web3Provider);
+
+      App.contracts.TrainingContract.deployed().then(function (instance) {
+        console.log(instance);
+      });
 
       return App.listenForEvents();
     });
