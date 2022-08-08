@@ -53,14 +53,14 @@
     "absolutePath": "project:/contracts/test.sol",
     "exportedSymbols": {
       "TrainingContract": [
-        74
+        397
       ]
     },
-    "id": 75,
+    "id": 398,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 34,
+        "id": 357,
         "literals": [
           "solidity",
           ">=",
@@ -79,23 +79,23 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 74,
+        "id": 397,
         "linearizedBaseContracts": [
-          74
+          397
         ],
         "name": "TrainingContract",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "TrainingContract.Training",
-            "id": 39,
+            "id": 362,
             "members": [
               {
                 "constant": false,
-                "id": 36,
+                "id": 359,
                 "name": "trainingId",
                 "nodeType": "VariableDeclaration",
-                "scope": 39,
+                "scope": 362,
                 "src": "91:18:1",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -104,7 +104,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 35,
+                  "id": 358,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "91:7:1",
@@ -118,10 +118,10 @@
               },
               {
                 "constant": false,
-                "id": 38,
+                "id": 361,
                 "name": "instpector",
                 "nodeType": "VariableDeclaration",
-                "scope": 39,
+                "scope": 362,
                 "src": "119:18:1",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -130,7 +130,7 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 37,
+                  "id": 360,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
                   "src": "119:7:1",
@@ -146,20 +146,20 @@
             ],
             "name": "Training",
             "nodeType": "StructDefinition",
-            "scope": 74,
+            "scope": 397,
             "src": "65:79:1",
             "visibility": "public"
           },
           {
             "canonicalName": "TrainingContract.Ressource",
-            "id": 45,
+            "id": 368,
             "members": [
               {
                 "constant": false,
-                "id": 41,
+                "id": 364,
                 "name": "trainingId",
                 "nodeType": "VariableDeclaration",
-                "scope": 45,
+                "scope": 368,
                 "src": "177:18:1",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -168,7 +168,7 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 40,
+                  "id": 363,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
                   "src": "177:7:1",
@@ -182,36 +182,36 @@
               },
               {
                 "constant": false,
-                "id": 44,
+                "id": 367,
                 "name": "requiredTraining",
                 "nodeType": "VariableDeclaration",
-                "scope": 45,
+                "scope": 368,
                 "src": "205:27:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_Training_$39_storage_$dyn_storage_ptr",
+                  "typeIdentifier": "t_array$_t_struct$_Training_$362_storage_$dyn_storage_ptr",
                   "typeString": "struct TrainingContract.Training[]"
                 },
                 "typeName": {
                   "baseType": {
                     "contractScope": null,
-                    "id": 42,
+                    "id": 365,
                     "name": "Training",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 39,
+                    "referencedDeclaration": 362,
                     "src": "205:8:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Training_$39_storage_ptr",
+                      "typeIdentifier": "t_struct$_Training_$362_storage_ptr",
                       "typeString": "struct TrainingContract.Training"
                     }
                   },
-                  "id": 43,
+                  "id": 366,
                   "length": null,
                   "nodeType": "ArrayTypeName",
                   "src": "205:10:1",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Training_$39_storage_$dyn_storage_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Training_$362_storage_$dyn_storage_ptr",
                     "typeString": "struct TrainingContract.Training[]"
                   }
                 },
@@ -221,46 +221,46 @@
             ],
             "name": "Ressource",
             "nodeType": "StructDefinition",
-            "scope": 74,
+            "scope": 397,
             "src": "150:89:1",
             "visibility": "public"
           },
           {
             "canonicalName": "TrainingContract.Member",
-            "id": 49,
+            "id": 372,
             "members": [
               {
                 "constant": false,
-                "id": 48,
+                "id": 371,
                 "name": "PassedTrainings",
                 "nodeType": "VariableDeclaration",
-                "scope": 49,
+                "scope": 372,
                 "src": "269:26:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_Training_$39_storage_$dyn_storage_ptr",
+                  "typeIdentifier": "t_array$_t_struct$_Training_$362_storage_$dyn_storage_ptr",
                   "typeString": "struct TrainingContract.Training[]"
                 },
                 "typeName": {
                   "baseType": {
                     "contractScope": null,
-                    "id": 46,
+                    "id": 369,
                     "name": "Training",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 39,
+                    "referencedDeclaration": 362,
                     "src": "269:8:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Training_$39_storage_ptr",
+                      "typeIdentifier": "t_struct$_Training_$362_storage_ptr",
                       "typeString": "struct TrainingContract.Training"
                     }
                   },
-                  "id": 47,
+                  "id": 370,
                   "length": null,
                   "nodeType": "ArrayTypeName",
                   "src": "269:10:1",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Training_$39_storage_$dyn_storage_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Training_$362_storage_$dyn_storage_ptr",
                     "typeString": "struct TrainingContract.Training[]"
                   }
                 },
@@ -270,27 +270,27 @@
             ],
             "name": "Member",
             "nodeType": "StructDefinition",
-            "scope": 74,
+            "scope": 397,
             "src": "245:57:1",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 53,
+            "id": 376,
             "name": "ressources",
             "nodeType": "VariableDeclaration",
-            "scope": 74,
+            "scope": 397,
             "src": "308:40:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Ressource_$45_storage_$",
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Ressource_$368_storage_$",
               "typeString": "mapping(uint256 => struct TrainingContract.Ressource)"
             },
             "typeName": {
-              "id": 52,
+              "id": 375,
               "keyType": {
-                "id": 50,
+                "id": 373,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
                 "src": "316:7:1",
@@ -302,18 +302,18 @@
               "nodeType": "Mapping",
               "src": "308:29:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Ressource_$45_storage_$",
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Ressource_$368_storage_$",
                 "typeString": "mapping(uint256 => struct TrainingContract.Ressource)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 51,
+                "id": 374,
                 "name": "Ressource",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 45,
+                "referencedDeclaration": 368,
                 "src": "327:9:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Ressource_$45_storage_ptr",
+                  "typeIdentifier": "t_struct$_Ressource_$368_storage_ptr",
                   "typeString": "struct TrainingContract.Ressource"
                 }
               }
@@ -323,21 +323,21 @@
           },
           {
             "constant": false,
-            "id": 57,
+            "id": 380,
             "name": "members",
             "nodeType": "VariableDeclaration",
-            "scope": 74,
+            "scope": 397,
             "src": "354:34:1",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Member_$49_storage_$",
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Member_$372_storage_$",
               "typeString": "mapping(uint256 => struct TrainingContract.Member)"
             },
             "typeName": {
-              "id": 56,
+              "id": 379,
               "keyType": {
-                "id": 54,
+                "id": 377,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
                 "src": "362:7:1",
@@ -349,18 +349,18 @@
               "nodeType": "Mapping",
               "src": "354:26:1",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Member_$49_storage_$",
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Member_$372_storage_$",
                 "typeString": "mapping(uint256 => struct TrainingContract.Member)"
               },
               "valueType": {
                 "contractScope": null,
-                "id": 55,
+                "id": 378,
                 "name": "Member",
                 "nodeType": "UserDefinedTypeName",
-                "referencedDeclaration": 49,
+                "referencedDeclaration": 372,
                 "src": "373:6:1",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Member_$49_storage_ptr",
+                  "typeIdentifier": "t_struct$_Member_$372_storage_ptr",
                   "typeString": "struct TrainingContract.Member"
                 }
               }
@@ -370,28 +370,28 @@
           },
           {
             "body": {
-              "id": 64,
+              "id": 387,
               "nodeType": "Block",
               "src": "488:2:1",
               "statements": []
             },
             "documentation": null,
-            "id": 65,
+            "id": 388,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "hasRequiredTraining",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 62,
+              "id": 385,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 59,
+                  "id": 382,
                   "name": "_trainingId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 65,
+                  "scope": 388,
                   "src": "424:19:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -400,7 +400,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 58,
+                    "id": 381,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "424:7:1",
@@ -414,10 +414,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 61,
+                  "id": 384,
                   "name": "_memberAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 65,
+                  "scope": 388,
                   "src": "445:22:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -426,7 +426,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 60,
+                    "id": 383,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "445:7:1",
@@ -443,12 +443,12 @@
               "src": "423:45:1"
             },
             "returnParameters": {
-              "id": 63,
+              "id": 386,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "488:0:1"
             },
-            "scope": 74,
+            "scope": 397,
             "src": "395:95:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -456,28 +456,28 @@
           },
           {
             "body": {
-              "id": 72,
+              "id": 395,
               "nodeType": "Block",
               "src": "590:2:1",
               "statements": []
             },
             "documentation": null,
-            "id": 73,
+            "id": 396,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isUniversityMember",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 70,
+              "id": 393,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 67,
+                  "id": 390,
                   "name": "_universityId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 73,
+                  "scope": 396,
                   "src": "524:21:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -486,7 +486,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 66,
+                    "id": 389,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "524:7:1",
@@ -500,10 +500,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 69,
+                  "id": 392,
                   "name": "_memberAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 73,
+                  "scope": 396,
                   "src": "547:22:1",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -512,7 +512,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 68,
+                    "id": 391,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "547:7:1",
@@ -529,19 +529,19 @@
               "src": "523:47:1"
             },
             "returnParameters": {
-              "id": 71,
+              "id": 394,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "590:0:1"
             },
-            "scope": 74,
+            "scope": 397,
             "src": "496:96:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 75,
+        "scope": 398,
         "src": "33:561:1"
       }
     ],
@@ -552,7 +552,7 @@
       "absolutePath": "project:/contracts/test.sol",
       "exportedSymbols": {
         "TrainingContract": [
-          74
+          397
         ]
       }
     },
@@ -569,7 +569,7 @@
             ".0"
           ]
         },
-        "id": 34,
+        "id": 357,
         "name": "PragmaDirective",
         "src": "0:31:1"
       },
@@ -585,17 +585,17 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            74
+            397
           ],
           "name": "TrainingContract",
-          "scope": 75
+          "scope": 398
         },
         "children": [
           {
             "attributes": {
               "canonicalName": "TrainingContract.Training",
               "name": "Training",
-              "scope": 74,
+              "scope": 397,
               "visibility": "public"
             },
             "children": [
@@ -603,7 +603,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "trainingId",
-                  "scope": 39,
+                  "scope": 362,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "uint256",
@@ -616,12 +616,12 @@
                       "name": "uint256",
                       "type": "uint256"
                     },
-                    "id": 35,
+                    "id": 358,
                     "name": "ElementaryTypeName",
                     "src": "91:7:1"
                   }
                 ],
-                "id": 36,
+                "id": 359,
                 "name": "VariableDeclaration",
                 "src": "91:18:1"
               },
@@ -629,7 +629,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "instpector",
-                  "scope": 39,
+                  "scope": 362,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "address",
@@ -643,17 +643,17 @@
                       "stateMutability": "nonpayable",
                       "type": "address"
                     },
-                    "id": 37,
+                    "id": 360,
                     "name": "ElementaryTypeName",
                     "src": "119:7:1"
                   }
                 ],
-                "id": 38,
+                "id": 361,
                 "name": "VariableDeclaration",
                 "src": "119:18:1"
               }
             ],
-            "id": 39,
+            "id": 362,
             "name": "StructDefinition",
             "src": "65:79:1"
           },
@@ -661,7 +661,7 @@
             "attributes": {
               "canonicalName": "TrainingContract.Ressource",
               "name": "Ressource",
-              "scope": 74,
+              "scope": 397,
               "visibility": "public"
             },
             "children": [
@@ -669,7 +669,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "trainingId",
-                  "scope": 45,
+                  "scope": 368,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "uint256",
@@ -682,12 +682,12 @@
                       "name": "uint256",
                       "type": "uint256"
                     },
-                    "id": 40,
+                    "id": 363,
                     "name": "ElementaryTypeName",
                     "src": "177:7:1"
                   }
                 ],
-                "id": 41,
+                "id": 364,
                 "name": "VariableDeclaration",
                 "src": "177:18:1"
               },
@@ -695,7 +695,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "requiredTraining",
-                  "scope": 45,
+                  "scope": 368,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "struct TrainingContract.Training[]",
@@ -713,25 +713,25 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "Training",
-                          "referencedDeclaration": 39,
+                          "referencedDeclaration": 362,
                           "type": "struct TrainingContract.Training"
                         },
-                        "id": 42,
+                        "id": 365,
                         "name": "UserDefinedTypeName",
                         "src": "205:8:1"
                       }
                     ],
-                    "id": 43,
+                    "id": 366,
                     "name": "ArrayTypeName",
                     "src": "205:10:1"
                   }
                 ],
-                "id": 44,
+                "id": 367,
                 "name": "VariableDeclaration",
                 "src": "205:27:1"
               }
             ],
-            "id": 45,
+            "id": 368,
             "name": "StructDefinition",
             "src": "150:89:1"
           },
@@ -739,7 +739,7 @@
             "attributes": {
               "canonicalName": "TrainingContract.Member",
               "name": "Member",
-              "scope": 74,
+              "scope": 397,
               "visibility": "public"
             },
             "children": [
@@ -747,7 +747,7 @@
                 "attributes": {
                   "constant": false,
                   "name": "PassedTrainings",
-                  "scope": 49,
+                  "scope": 372,
                   "stateVariable": false,
                   "storageLocation": "default",
                   "type": "struct TrainingContract.Training[]",
@@ -765,25 +765,25 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "Training",
-                          "referencedDeclaration": 39,
+                          "referencedDeclaration": 362,
                           "type": "struct TrainingContract.Training"
                         },
-                        "id": 46,
+                        "id": 369,
                         "name": "UserDefinedTypeName",
                         "src": "269:8:1"
                       }
                     ],
-                    "id": 47,
+                    "id": 370,
                     "name": "ArrayTypeName",
                     "src": "269:10:1"
                   }
                 ],
-                "id": 48,
+                "id": 371,
                 "name": "VariableDeclaration",
                 "src": "269:26:1"
               }
             ],
-            "id": 49,
+            "id": 372,
             "name": "StructDefinition",
             "src": "245:57:1"
           },
@@ -791,7 +791,7 @@
             "attributes": {
               "constant": false,
               "name": "ressources",
-              "scope": 74,
+              "scope": 397,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(uint256 => struct TrainingContract.Ressource)",
@@ -809,7 +809,7 @@
                       "name": "uint256",
                       "type": "uint256"
                     },
-                    "id": 50,
+                    "id": 373,
                     "name": "ElementaryTypeName",
                     "src": "316:7:1"
                   },
@@ -817,20 +817,20 @@
                     "attributes": {
                       "contractScope": null,
                       "name": "Ressource",
-                      "referencedDeclaration": 45,
+                      "referencedDeclaration": 368,
                       "type": "struct TrainingContract.Ressource"
                     },
-                    "id": 51,
+                    "id": 374,
                     "name": "UserDefinedTypeName",
                     "src": "327:9:1"
                   }
                 ],
-                "id": 52,
+                "id": 375,
                 "name": "Mapping",
                 "src": "308:29:1"
               }
             ],
-            "id": 53,
+            "id": 376,
             "name": "VariableDeclaration",
             "src": "308:40:1"
           },
@@ -838,7 +838,7 @@
             "attributes": {
               "constant": false,
               "name": "members",
-              "scope": 74,
+              "scope": 397,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(uint256 => struct TrainingContract.Member)",
@@ -856,7 +856,7 @@
                       "name": "uint256",
                       "type": "uint256"
                     },
-                    "id": 54,
+                    "id": 377,
                     "name": "ElementaryTypeName",
                     "src": "362:7:1"
                   },
@@ -864,20 +864,20 @@
                     "attributes": {
                       "contractScope": null,
                       "name": "Member",
-                      "referencedDeclaration": 49,
+                      "referencedDeclaration": 372,
                       "type": "struct TrainingContract.Member"
                     },
-                    "id": 55,
+                    "id": 378,
                     "name": "UserDefinedTypeName",
                     "src": "373:6:1"
                   }
                 ],
-                "id": 56,
+                "id": 379,
                 "name": "Mapping",
                 "src": "354:26:1"
               }
             ],
-            "id": 57,
+            "id": 380,
             "name": "VariableDeclaration",
             "src": "354:34:1"
           },
@@ -891,7 +891,7 @@
                 null
               ],
               "name": "hasRequiredTraining",
-              "scope": 74,
+              "scope": 397,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -903,7 +903,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_trainingId",
-                      "scope": 65,
+                      "scope": 388,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -916,12 +916,12 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 58,
+                        "id": 381,
                         "name": "ElementaryTypeName",
                         "src": "424:7:1"
                       }
                     ],
-                    "id": 59,
+                    "id": 382,
                     "name": "VariableDeclaration",
                     "src": "424:19:1"
                   },
@@ -929,7 +929,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_memberAddress",
-                      "scope": 65,
+                      "scope": 388,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -943,17 +943,17 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 60,
+                        "id": 383,
                         "name": "ElementaryTypeName",
                         "src": "445:7:1"
                       }
                     ],
-                    "id": 61,
+                    "id": 384,
                     "name": "VariableDeclaration",
                     "src": "445:22:1"
                   }
                 ],
-                "id": 62,
+                "id": 385,
                 "name": "ParameterList",
                 "src": "423:45:1"
               },
@@ -964,7 +964,7 @@
                   ]
                 },
                 "children": [],
-                "id": 63,
+                "id": 386,
                 "name": "ParameterList",
                 "src": "488:0:1"
               },
@@ -975,12 +975,12 @@
                   ]
                 },
                 "children": [],
-                "id": 64,
+                "id": 387,
                 "name": "Block",
                 "src": "488:2:1"
               }
             ],
-            "id": 65,
+            "id": 388,
             "name": "FunctionDefinition",
             "src": "395:95:1"
           },
@@ -994,7 +994,7 @@
                 null
               ],
               "name": "isUniversityMember",
-              "scope": 74,
+              "scope": 397,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -1006,7 +1006,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_universityId",
-                      "scope": 73,
+                      "scope": 396,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1019,12 +1019,12 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 66,
+                        "id": 389,
                         "name": "ElementaryTypeName",
                         "src": "524:7:1"
                       }
                     ],
-                    "id": 67,
+                    "id": 390,
                     "name": "VariableDeclaration",
                     "src": "524:21:1"
                   },
@@ -1032,7 +1032,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_memberAddress",
-                      "scope": 73,
+                      "scope": 396,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1046,17 +1046,17 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 68,
+                        "id": 391,
                         "name": "ElementaryTypeName",
                         "src": "547:7:1"
                       }
                     ],
-                    "id": 69,
+                    "id": 392,
                     "name": "VariableDeclaration",
                     "src": "547:22:1"
                   }
                 ],
-                "id": 70,
+                "id": 393,
                 "name": "ParameterList",
                 "src": "523:47:1"
               },
@@ -1067,7 +1067,7 @@
                   ]
                 },
                 "children": [],
-                "id": 71,
+                "id": 394,
                 "name": "ParameterList",
                 "src": "590:0:1"
               },
@@ -1078,22 +1078,22 @@
                   ]
                 },
                 "children": [],
-                "id": 72,
+                "id": 395,
                 "name": "Block",
                 "src": "590:2:1"
               }
             ],
-            "id": 73,
+            "id": 396,
             "name": "FunctionDefinition",
             "src": "496:96:1"
           }
         ],
-        "id": 74,
+        "id": 397,
         "name": "ContractDefinition",
         "src": "33:561:1"
       }
     ],
-    "id": 75,
+    "id": 398,
     "name": "SourceUnit",
     "src": "0:595:1"
   },
@@ -1103,7 +1103,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-08-07T20:57:07.364Z",
+  "updatedAt": "2022-08-08T09:56:38.869Z",
   "devdoc": {
     "methods": {}
   },

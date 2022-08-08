@@ -5,6 +5,13 @@ var resourceRentalContract;
 var accountAddress;
 var currentAddress;
 
+//-------------------------------------------------------
+
+const bloxbergContractAddress =
+  "0x9aa655d59a6ba1663c1520fb79e1b5fcf55f1c35ab46f29ebdb1b4bee0ccf3fc";
+
+//-------------------------------------------------------
+
 App = {
   web3Provider: null,
   contracts: {},
@@ -44,8 +51,8 @@ App = {
       currentAddress = web3.currentProvider.selectedAddress;
 
       $.getJSON("ResourceRental.json", function (ResourceRentalBloxberg) {
-        const networkId = web3.eth.net.getId().then();
-        const instance = new web3.eth.Contract();
+        // const networkId = web3.eth.net.getId().then();
+        // const instance = new web3.eth.Contract();
       }),
         App.showUserAddress(currentAddress);
     } else {
@@ -100,9 +107,6 @@ App = {
   // Listen for events emitted from the contract
   listenForEvents: function () {
     App.contracts.ResourceRental.deployed().then(function (instance) {
-      // Restart Chrome if you are unable to receive this event
-      // This is a known issue with Metamask
-      // https://github.com/MetaMask/metamask-extension/issues/2393
       App.render();
     });
   },
@@ -218,7 +222,20 @@ App = {
     if (events) {
       for (var i = 1; i <= events.length; i++) {
         var tx = events[i - 1].tx;
+        console.log(events[i - 1].logs);
+        const { _fromTimeStamp, _toTimestamp, _resourceId, _renter } =
+          events[i - 1].logs[0].args;
+        console.log(events[i - 1].logs);
+
+        console.log(typeof _toTimestamp);
         resourceTemplate.find(".event-transaction-number").text(tx);
+        resourceTemplate.find(".event-renter-number").text(_renter);
+        resourceTemplate
+          .find(".from-rent-timestamp")
+          .text(() => new Date(parseInt(_fromTimeStamp)));
+        resourceTemplate
+          .find(".to-rent-timestamp")
+          .text(() => new Date(parseInt(_toTimestamp)));
         resourcesRow.append(resourceTemplate.html());
       }
     }
@@ -248,9 +265,6 @@ function createAdvert() {
 
   var fromTimeStamp = document.getElementById("fromTimeStamp").value;
   var toTimeStamp = document.getElementById("toTimeStamp").value;
-
-  console.log(fromTimeStamp);
-  console.log(toTimeStamp);
 
   var convertedFromTimeStamp = convertToTimeStamp(fromTimeStamp);
   var convertedToTimeStamp = convertToTimeStamp(toTimeStamp);

@@ -8,6 +8,7 @@ contract ResourceRental {
 
     // Model a Rental
     struct Rental {
+        address renterAddress;
         string resourceName;
         uint256 bookingId;
         uint256 resourceId;
@@ -47,6 +48,7 @@ contract ResourceRental {
     event RenterAdded(string _renterName, address _senderAddress);
     event ResourceCreated(uint256 _id, address _creatorAddress);
     event ResourceRented(
+        address _renter,
         uint256 _resourceId,
         string _fromTimeStamp,
         string _toTimestamp
@@ -125,9 +127,8 @@ contract ResourceRental {
         string memory _picture,
         string memory _location,
         string memory _fromTimeStamp,
-        string memory _toTimeStamp
-    ) public // uint8[] memory _requiredTraining
-    {
+        string memory _toTimeStamp // uint8[] memory _requiredTraining
+    ) public {
         // require();
 
         // represent Id of the renter
@@ -156,6 +157,7 @@ contract ResourceRental {
 
         rentalsCount++;
         rentals[rentalsCount] = Rental(
+            msg.sender,
             resource.name,
             rentalsCount,
             resource.resourceId,
@@ -165,7 +167,12 @@ contract ResourceRental {
 
         delete resources[_id];
 
-        emit ResourceRented(_id, resource.fromTimeStamp, resource.toTimeStamp);
+        emit ResourceRented(
+            msg.sender,
+            _id,
+            resource.fromTimeStamp,
+            resource.toTimeStamp
+        );
     }
 
     //----------------------------------------------------------
