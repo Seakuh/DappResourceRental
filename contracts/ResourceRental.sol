@@ -31,6 +31,7 @@ contract ResourceRental {
         string location;
         string fromTimeStamp;
         string toTimeStamp;
+        bool verified;
         // uint8[3] requiredTraining;
     }
 
@@ -39,6 +40,12 @@ contract ResourceRental {
         uint256 universityId;
         string name;
         address universityAddress;
+    }
+
+    struct Verifier {
+        uint256 verifierId;
+        string name;
+        address verifierAddress;
     }
 
     //----------------------------------------------------------
@@ -65,12 +72,14 @@ contract ResourceRental {
     mapping(uint256 => Resource) public resources;
     mapping(uint256 => University) public universities;
     mapping(uint256 => Rental) public rentals;
+    mapping(uint256 => Verifier) public verifiers;
 
     // Store index
     uint256 public rentersCount;
     uint256 public resourcesCount;
     uint256 public resourcesAdvertCount;
     uint256 public universitiesCount;
+    uint256 public verifiersCount;
     uint256 public rentalsCount;
 
     // Store Rental
@@ -122,6 +131,27 @@ contract ResourceRental {
         emit RenterAdded(_name, msg.sender);
     }
 
+    function verifyResourceEcoStamp(
+        uint256 _resourceId,
+        bool _verified,
+        uint256 _verifierId
+    ) public isVerifier(_verifierId) {
+        resources[_resourceId].verified = _verified;
+    }
+
+    function addVerifier(
+        uint256 _univertsityId,
+        string memory _verifierName,
+        address _verifierAddress
+    ) public isUniversity(_univertsityId) {
+        verifiersCount++;
+        verifiers[verifiersCount] = Verifier(
+            verifiersCount,
+            _verifierName,
+            _verifierAddress
+        );
+    }
+
     function addResource(
         string memory _name,
         string memory _picture,
@@ -139,7 +169,8 @@ contract ResourceRental {
             _picture,
             _location,
             _fromTimeStamp,
-            _toTimeStamp
+            _toTimeStamp,
+            false
             // _requiredTraining
         );
         emit ResourceCreated(resourcesCount, msg.sender);
@@ -184,6 +215,14 @@ contract ResourceRental {
         require(
             msg.sender == universities[_id].universityAddress,
             "Caller is no university"
+        );
+        _;
+    }
+
+    modifier isVerifier(uint256 _id) {
+        require(
+            msg.sender == verifiers[_id].verifierAddress,
+            "Caller is no verifier"
         );
         _;
     }
