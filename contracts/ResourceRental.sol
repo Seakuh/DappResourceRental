@@ -2,6 +2,41 @@
 pragma solidity >=0.4.22 <0.8.0;
 
 contract ResourceRental {
+    // Helphotline
+    string hotline = "0800550488";
+    string richtilinien = "<ipfs-Link>";
+
+    //----------------------------------------------------------
+    // Stornierung
+    //----------------------------------------------------------
+
+    function cancelResourceRental(uint256 _id) public {
+        Resource memory resource = resources[_id];
+
+        rentalsCount++;
+        rentals[rentalsCount] = Rental(
+            msg.sender,
+            resource.name,
+            rentalsCount,
+            resource.resourceId,
+            resource.fromTimeStamp,
+            resource.toTimeStamp
+        );
+
+        delete resources[_id];
+
+        emit ResourceRented(
+            msg.sender,
+            _id,
+            resource.fromTimeStamp,
+            resource.toTimeStamp
+        );
+    }
+
+    //----------------------------------------------------------
+    // Current Rents
+    //----------------------------------------------------------
+
     //----------------------------------------------------------
     // Structs
     //----------------------------------------------------------
@@ -32,6 +67,7 @@ contract ResourceRental {
         string fromTimeStamp;
         string toTimeStamp;
         bool verified;
+        address owner;
         // uint8[3] requiredTraining;
     }
 
@@ -107,6 +143,8 @@ contract ResourceRental {
     // public Functions
     //----------------------------------------------------------
 
+    // event UniversityAdded();
+
     function addUniversity(
         uint256 _universityId,
         string memory _name,
@@ -121,6 +159,8 @@ contract ResourceRental {
             _name,
             _newUniversityAddress
         );
+
+        // emit
     }
 
     function addRenter(string memory _name) public {
@@ -157,7 +197,7 @@ contract ResourceRental {
         string memory _picture,
         string memory _location,
         string memory _fromTimeStamp,
-        string memory _toTimeStamp // uint8[] memory _requiredTraining
+        string memory _toTimeStamp
     ) public {
         // require();
 
@@ -170,7 +210,8 @@ contract ResourceRental {
             _location,
             _fromTimeStamp,
             _toTimeStamp,
-            false
+            false,
+            msg.sender
             // _requiredTraining
         );
         emit ResourceCreated(resourcesCount, msg.sender);
@@ -277,6 +318,14 @@ contract ResourceRental {
         addResource(
             "Schulungszentrum Darmstadt",
             "https://www.schulungszentrum-darmstadt.de/wp-content/uploads/2019/09/DSC1868.jpg",
+            "Darmstadt, Germany",
+            "1654782938174",
+            "1655992478797"
+        );
+
+        addResource(
+            "Reinraum München 2.34",
+            "https://www.cta.at/wp-content/uploads/2016/10/cta_ottobock_1-770x414.jpg",
             "Darmstadt, Germany",
             "1654782938174",
             "1655992478797"
