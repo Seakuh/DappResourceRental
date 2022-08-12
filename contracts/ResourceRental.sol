@@ -2,6 +2,41 @@
 pragma solidity >=0.4.22 <0.8.0;
 
 contract ResourceRental {
+    // Helphotline
+    string hotline = "0800550488";
+    string richtilinien = "<ipfs-Link>";
+
+    //----------------------------------------------------------
+    // Stornierung
+    //----------------------------------------------------------
+
+    function cancelResourceRental(uint256 _id) public {
+        Resource memory resource = resources[_id];
+
+        rentalsCount++;
+        rentals[rentalsCount] = Rental(
+            msg.sender,
+            resource.name,
+            rentalsCount,
+            resource.resourceId,
+            resource.fromTimeStamp,
+            resource.toTimeStamp
+        );
+
+        delete resources[_id];
+
+        emit ResourceRented(
+            msg.sender,
+            _id,
+            resource.fromTimeStamp,
+            resource.toTimeStamp
+        );
+    }
+
+    //----------------------------------------------------------
+    // Current Rents
+    //----------------------------------------------------------
+
     //----------------------------------------------------------
     // Structs
     //----------------------------------------------------------
@@ -31,6 +66,8 @@ contract ResourceRental {
         string location;
         string fromTimeStamp;
         string toTimeStamp;
+        bool verified;
+        address owner;
         // uint8[3] requiredTraining;
     }
 
@@ -39,6 +76,12 @@ contract ResourceRental {
         uint256 universityId;
         string name;
         address universityAddress;
+    }
+
+    struct Verifier {
+        uint256 verifierId;
+        string name;
+        address verifierAddress;
     }
 
     //----------------------------------------------------------
@@ -65,12 +108,14 @@ contract ResourceRental {
     mapping(uint256 => Resource) public resources;
     mapping(uint256 => University) public universities;
     mapping(uint256 => Rental) public rentals;
+    mapping(uint256 => Verifier) public verifiers;
 
     // Store index
     uint256 public rentersCount;
     uint256 public resourcesCount;
     uint256 public resourcesAdvertCount;
     uint256 public universitiesCount;
+    uint256 public verifiersCount;
     uint256 public rentalsCount;
 
     // Store Rental
@@ -98,6 +143,8 @@ contract ResourceRental {
     // public Functions
     //----------------------------------------------------------
 
+    // event UniversityAdded();
+
     function addUniversity(
         uint256 _universityId,
         string memory _name,
@@ -112,6 +159,8 @@ contract ResourceRental {
             _name,
             _newUniversityAddress
         );
+
+        // emit
     }
 
     function addRenter(string memory _name) public {
@@ -122,12 +171,33 @@ contract ResourceRental {
         emit RenterAdded(_name, msg.sender);
     }
 
+    function verifyResourceEcoStamp(
+        uint256 _resourceId,
+        bool _verified,
+        uint256 _verifierId
+    ) public isVerifier(_verifierId) {
+        resources[_resourceId].verified = _verified;
+    }
+
+    function addVerifier(
+        uint256 _univertsityId,
+        string memory _verifierName,
+        address _verifierAddress
+    ) public isUniversity(_univertsityId) {
+        verifiersCount++;
+        verifiers[verifiersCount] = Verifier(
+            verifiersCount,
+            _verifierName,
+            _verifierAddress
+        );
+    }
+
     function addResource(
         string memory _name,
         string memory _picture,
         string memory _location,
         string memory _fromTimeStamp,
-        string memory _toTimeStamp // uint8[] memory _requiredTraining
+        string memory _toTimeStamp
     ) public {
         // require();
 
@@ -139,7 +209,9 @@ contract ResourceRental {
             _picture,
             _location,
             _fromTimeStamp,
-            _toTimeStamp
+            _toTimeStamp,
+            false,
+            msg.sender
             // _requiredTraining
         );
         emit ResourceCreated(resourcesCount, msg.sender);
@@ -184,6 +256,14 @@ contract ResourceRental {
         require(
             msg.sender == universities[_id].universityAddress,
             "Caller is no university"
+        );
+        _;
+    }
+
+    modifier isVerifier(uint256 _id) {
+        require(
+            msg.sender == verifiers[_id].verifierAddress,
+            "Caller is no verifier"
         );
         _;
     }
@@ -238,6 +318,14 @@ contract ResourceRental {
         addResource(
             "Schulungszentrum Darmstadt",
             "https://www.schulungszentrum-darmstadt.de/wp-content/uploads/2019/09/DSC1868.jpg",
+            "Darmstadt, Germany",
+            "1654782938174",
+            "1655992478797"
+        );
+
+        addResource(
+            "Reinraum München 2.34",
+            "https://www.cta.at/wp-content/uploads/2016/10/cta_ottobock_1-770x414.jpg",
             "Darmstadt, Germany",
             "1654782938174",
             "1655992478797"
