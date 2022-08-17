@@ -269,15 +269,13 @@ function createAdvert() {
   var convertedFromTimeStamp = convertToTimeStamp(fromTimeStamp);
   var convertedToTimeStamp = convertToTimeStamp(toTimeStamp);
 
-  console.log(convertedFromTimeStamp);
-  console.log(convertedToTimeStamp);
+  var permission = document.getElementById("permission");
+  var permissionText = permission.options[permission.selectedIndex].text;
 
   if (!imagePath) {
     imagePath =
       "https://cdn.prod.www.spiegel.de/images/6bbd78cd-0001-0004-0000-000001454027_w1600_r1.4790419161676647_fpx33.81_fpy50.jpg";
   }
-
-  console.log(imagePath);
 
   // Test function with truffle develop
   // truffle(develop)> ResourceRental.deployed().then(function(i) {app = i})
@@ -290,6 +288,7 @@ function createAdvert() {
       location,
       convertedFromTimeStamp.toString(),
       convertedToTimeStamp.toString(),
+      permissionText,
       { from: currentAddress }
     );
   });
