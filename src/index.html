@@ -50,7 +50,7 @@
         <form onsubmit="createAdvert()">
           <label>Resource Name:</label><br />
           <input type="text" id="resourceName" name="name" /><br />
-          <label>Image:</label><br />
+          <label>Detail Url:</label><br />
           <input
             type="text"
             id="resourceImage"
@@ -72,6 +72,16 @@
             name="toTimeStamp"
           /><br /><br />
           <br />
+          <label>Permission: </label>
+          <br />
+          <select name="permission" id="permission">
+            <option value="">ALL</option>
+            <option value="">STUDENT</option>
+            <option value="">SCIENTIFIC_ASSISTANT</option>
+            <option value="">PROFESSOR</option>
+            <option value="">ADMIN</option>
+          </select>
+          <br /><br />
           <br />
           <input type="button" value="Create advert" onclick="createAdvert()" />
         </form>
@@ -141,6 +151,22 @@
               data-id="0"
             >
               rent
+            </button>
+            <button
+              onclick="rentResource($(this).data('id'))"
+              class="btn btn-default btn-rent btn btn btn-primary"
+              type="button"
+              data-id="0"
+            >
+              Details
+            </button>
+            <button
+              onclick="rentResource($(this).data('id'))"
+              class="btn btn-default btn-rent btn btn-success"
+              type="button"
+              data-id="0"
+            >
+              eco check
             </button>
           </div>
         </div>

@@ -1,0 +1,2894 @@
+{
+  "contractName": "SafetyBriefing",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "clientAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "briefingId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "validity",
+          "type": "string"
+        }
+      ],
+      "name": "BriefingVerified",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "briefings",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "briefingId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "briefingAuthority",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "requiredBriefings",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "createBriefing",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_clientAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_briefingId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_validity",
+          "type": "string"
+        }
+      ],
+      "name": "verifyBriefing",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"clientAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"briefingId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"validity\",\"type\":\"string\"}],\"name\":\"BriefingVerified\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"briefings\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"briefingId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"briefingAuthority\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256[]\",\"name\":\"requiredBriefings\",\"type\":\"uint256[]\"}],\"name\":\"createBriefing\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_clientAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_briefingId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_validity\",\"type\":\"string\"}],\"name\":\"verifyBriefing\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/SafetyBriefing.sol\":\"SafetyBriefing\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/SafetyBriefing.sol\":{\"keccak256\":\"0x163fcf7279bccda6cf0bacd3183b981a873d92f94fcbe9f36eb71bbe2b226fcc\",\"urls\":[\"bzz-raw://3f1489b3222726cf8a7e3334881344e0be8648768abfab462c5fa9107b8c1fd6\",\"dweb:/ipfs/QmZ1YrBPRJzg5FZyXYZj1zr54sAg5n4B3Lcu8iKkwHP9YT\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506106bd806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80636ce753ee146100465780636f7de4ae146100bb578063fbd38f8814610173575b600080fd5b6100726004803603602081101561005c57600080fd5b8101908080359060200190929190505050610258565b604051808381526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390f35b610171600480360360208110156100d157600080fd5b81019080803590602001906401000000008111156100ee57600080fd5b82018360208201111561010057600080fd5b8035906020019184602083028401116401000000008311171561012257600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600081840152601f19601f82011690508083019250505050505050919291929050505061029c565b005b6102566004803603606081101561018957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803590602001906401000000008111156101d057600080fd5b8201836020820111156101e257600080fd5b8035906020019184600183028401116401000000008311171561020457600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610461565b005b60006020528060005260406000206000915090508060000154908060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905082565b6001600081548092919060010191905055506000815111156103a557604051806060016040528060015481526020013373ffffffffffffffffffffffffffffffffffffffff16815260200160006040519080825280602002602001820160405280156103175781602001602082028038833980820191505090505b5081525060008060015481526020019081526020016000206000820151816000015560208201518160010160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550604082015181600201908051906020019061039c929190610616565b5090505061045e565b604051806060016040528060015481526020013373ffffffffffffffffffffffffffffffffffffffff1681526020018281525060008060015481526020019081526020016000206000820151816000015560208201518160010160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506040820151816002019080519060200190610459929190610616565b509050505b50565b8160008082815260200190815260200160002060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614610538576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601e8152602001807f43616c6c6572206973206e6f204272696566696e67617574686f72697479000081525060200191505060405180910390fd5b7f8dad04b632d4137f723622a1a37211ecd9c76a60727638f830dcce5539d76c08848484604051808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156105d45780820151818401526020810190506105b9565b50505050905090810190601f1680156106015780820380516001836020036101000a031916815260200191505b5094505050505060405180910390a150505050565b828054828255906000526020600020908101928215610652579160200282015b82811115610651578251825591602001919060010190610636565b5b50905061065f9190610663565b5090565b61068591905b80821115610681576000816000905550600101610669565b5090565b9056fea265627a7a72315820e033fff3a2f97a7f0c8596fb7549f59d319eea7138a14920be83b6ef19f4944f64736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80636ce753ee146100465780636f7de4ae146100bb578063fbd38f8814610173575b600080fd5b6100726004803603602081101561005c57600080fd5b8101908080359060200190929190505050610258565b604051808381526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390f35b610171600480360360208110156100d157600080fd5b81019080803590602001906401000000008111156100ee57600080fd5b82018360208201111561010057600080fd5b8035906020019184602083028401116401000000008311171561012257600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600081840152601f19601f82011690508083019250505050505050919291929050505061029c565b005b6102566004803603606081101561018957600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803590602001906401000000008111156101d057600080fd5b8201836020820111156101e257600080fd5b8035906020019184600183028401116401000000008311171561020457600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610461565b005b60006020528060005260406000206000915090508060000154908060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905082565b6001600081548092919060010191905055506000815111156103a557604051806060016040528060015481526020013373ffffffffffffffffffffffffffffffffffffffff16815260200160006040519080825280602002602001820160405280156103175781602001602082028038833980820191505090505b5081525060008060015481526020019081526020016000206000820151816000015560208201518160010160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550604082015181600201908051906020019061039c929190610616565b5090505061045e565b604051806060016040528060015481526020013373ffffffffffffffffffffffffffffffffffffffff1681526020018281525060008060015481526020019081526020016000206000820151816000015560208201518160010160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506040820151816002019080519060200190610459929190610616565b509050505b50565b8160008082815260200190815260200160002060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614610538576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601e8152602001807f43616c6c6572206973206e6f204272696566696e67617574686f72697479000081525060200191505060405180910390fd5b7f8dad04b632d4137f723622a1a37211ecd9c76a60727638f830dcce5539d76c08848484604051808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200183815260200180602001828103825283818151815260200191508051906020019080838360005b838110156105d45780820151818401526020810190506105b9565b50505050905090810190601f1680156106015780820380516001836020036101000a031916815260200191505b5094505050505060405180910390a150505050565b828054828255906000526020600020908101928215610652579160200282015b82811115610651578251825591602001919060010190610636565b5b50905061065f9190610663565b5090565b61068591905b80821115610681576000816000905550600101610669565b5090565b9056fea265627a7a72315820e033fff3a2f97a7f0c8596fb7549f59d319eea7138a14920be83b6ef19f4944f64736f6c63430005100032",
+  "sourceMap": "66:1442:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;66:1442:1;;;;;;;",
+  "deployedSourceMap": "66:1442:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;66:1442:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;96:45;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;96:45:1;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;424:489;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;424:489:1;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;424:489:1;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;424:489:1;;;;;;101:9:-1;95:2;81:12;77:21;67:8;63:36;60:51;39:11;25:12;22:29;11:108;8:2;;;132:1;129;122:12;8:2;424:489:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;424:489:1;;;;;;;;;;;;;;;:::i;:::-;;919:242;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;919:242:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;919:242:1;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;919:242:1;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;919:242:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;919:242:1;;;;;;;;;;;;;;;:::i;:::-;;96:45;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;424:489::-;501:14;;:16;;;;;;;;;;;;;559:1;532:17;:24;:28;528:379;;;604:116;;;;;;;;630:14;;604:116;;;;662:10;604:116;;;;;;704:1;690:16;;;;;;;;;;;;;;;;;;;;;;29:2:-1;21:6;17:15;117:4;105:10;97:6;88:34;148:4;140:6;136:17;126:27;;0:157;690:16:1;;;;604:116;;;576:9;:25;586:14;;576:25;;;;;;;;;;;:144;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;528:379;;;779:117;;;;;;;;805:14;;779:117;;;;837:10;779:117;;;;;;865:17;779:117;;;751:9;:25;761:14;;751:25;;;;;;;;;;;:145;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;528:379;424:489;:::o;919:242::-;1070:11;1400:9;:14;1410:3;1400:14;;;;;;;;;;;:32;;;;;;;;;;;;1386:46;;:10;:46;;;1365:123;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1098:56;1115:14;1131:11;1144:9;1098:56;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1098:56:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;919:242;;;;:::o;66:1442::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.8.0;\n\ncontract SafetyBriefing {\n    mapping(uint256 => Briefing) public briefings;\n    uint256 briefingsCount;\n\n    struct Briefing {\n        uint256 briefingId;\n        address briefingAuthority;\n        uint256[] requiredBriefings;\n    }\n\n    event BriefingVerified(\n        address clientAddress,\n        uint256 briefingId,\n        string validity\n    );\n\n    function createBriefing(uint256[] memory requiredBriefings) public {\n        briefingsCount++;\n\n        if (requiredBriefings.length > 0) {\n            briefings[briefingsCount] = Briefing(\n                briefingsCount,\n                msg.sender,\n                new uint256[](0)\n            );\n        } else {\n            briefings[briefingsCount] = Briefing(\n                briefingsCount,\n                msg.sender,\n                requiredBriefings\n            );\n        }\n    }\n\n    function verifyBriefing(\n        address _clientAddress,\n        uint256 _briefingId,\n        string memory _validity\n    ) public isBriefingAuthority(_briefingId) {\n        emit BriefingVerified(_clientAddress, _briefingId, _validity);\n    }\n\n    //----------------------------------------------------------\n    // Modifier\n    //----------------------------------------------------------\n    modifier isBriefingAuthority(uint256 _id) {\n        require(\n            msg.sender == briefings[_id].briefingAuthority,\n            \"Caller is no Briefingauthority\"\n        );\n        _;\n    }\n}\n",
+  "sourcePath": "/home/dizzle/Dev/Dapp/contracts/SafetyBriefing.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/SafetyBriefing.sol",
+    "exportedSymbols": {
+      "SafetyBriefing": [
+        472
+      ]
+    },
+    "id": 473,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 370,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:32:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 472,
+        "linearizedBaseContracts": [
+          472
+        ],
+        "name": "SafetyBriefing",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 374,
+            "name": "briefings",
+            "nodeType": "VariableDeclaration",
+            "scope": 472,
+            "src": "96:45:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Briefing_$384_storage_$",
+              "typeString": "mapping(uint256 => struct SafetyBriefing.Briefing)"
+            },
+            "typeName": {
+              "id": 373,
+              "keyType": {
+                "id": 371,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "104:7:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "96:28:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Briefing_$384_storage_$",
+                "typeString": "mapping(uint256 => struct SafetyBriefing.Briefing)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 372,
+                "name": "Briefing",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 384,
+                "src": "115:8:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Briefing_$384_storage_ptr",
+                  "typeString": "struct SafetyBriefing.Briefing"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 376,
+            "name": "briefingsCount",
+            "nodeType": "VariableDeclaration",
+            "scope": 472,
+            "src": "147:22:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 375,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "147:7:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "SafetyBriefing.Briefing",
+            "id": 384,
+            "members": [
+              {
+                "constant": false,
+                "id": 378,
+                "name": "briefingId",
+                "nodeType": "VariableDeclaration",
+                "scope": 384,
+                "src": "202:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 377,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "202:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 380,
+                "name": "briefingAuthority",
+                "nodeType": "VariableDeclaration",
+                "scope": 384,
+                "src": "230:25:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 379,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "230:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 383,
+                "name": "requiredBriefings",
+                "nodeType": "VariableDeclaration",
+                "scope": 384,
+                "src": "265:27:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                  "typeString": "uint256[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 381,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "265:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 382,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "265:9:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                    "typeString": "uint256[]"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Briefing",
+            "nodeType": "StructDefinition",
+            "scope": 472,
+            "src": "176:123:1",
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 392,
+            "name": "BriefingVerified",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 391,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 386,
+                  "indexed": false,
+                  "name": "clientAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 392,
+                  "src": "337:21:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 385,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "337:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 388,
+                  "indexed": false,
+                  "name": "briefingId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 392,
+                  "src": "368:18:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 387,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "368:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 390,
+                  "indexed": false,
+                  "name": "validity",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 392,
+                  "src": "396:15:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 389,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "396:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "327:90:1"
+            },
+            "src": "305:113:1"
+          },
+          {
+            "body": {
+              "id": 434,
+              "nodeType": "Block",
+              "src": "491:422:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 399,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "++",
+                    "prefix": false,
+                    "src": "501:16:1",
+                    "subExpression": {
+                      "argumentTypes": null,
+                      "id": 398,
+                      "name": "briefingsCount",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 376,
+                      "src": "501:14:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 400,
+                  "nodeType": "ExpressionStatement",
+                  "src": "501:16:1"
+                },
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 404,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 401,
+                        "name": "requiredBriefings",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 395,
+                        "src": "532:17:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                          "typeString": "uint256[] memory"
+                        }
+                      },
+                      "id": 402,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "length",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "532:24:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "hexValue": "30",
+                      "id": 403,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "559:1:1",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "532:28:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "id": 432,
+                    "nodeType": "Block",
+                    "src": "737:170:1",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 430,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 421,
+                              "name": "briefings",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 374,
+                              "src": "751:9:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Briefing_$384_storage_$",
+                                "typeString": "mapping(uint256 => struct SafetyBriefing.Briefing storage ref)"
+                              }
+                            },
+                            "id": 423,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 422,
+                              "name": "briefingsCount",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 376,
+                              "src": "761:14:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "751:25:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Briefing_$384_storage",
+                              "typeString": "struct SafetyBriefing.Briefing storage ref"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "id": 425,
+                                "name": "briefingsCount",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 376,
+                                "src": "805:14:1",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "expression": {
+                                  "argumentTypes": null,
+                                  "id": 426,
+                                  "name": "msg",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 562,
+                                  "src": "837:3:1",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_magic_message",
+                                    "typeString": "msg"
+                                  }
+                                },
+                                "id": 427,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "sender",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": null,
+                                "src": "837:10:1",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "id": 428,
+                                "name": "requiredBriefings",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 395,
+                                "src": "865:17:1",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                                  "typeString": "uint256[] memory"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                },
+                                {
+                                  "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                                  "typeString": "uint256[] memory"
+                                }
+                              ],
+                              "id": 424,
+                              "name": "Briefing",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 384,
+                              "src": "779:8:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_struct$_Briefing_$384_storage_ptr_$",
+                                "typeString": "type(struct SafetyBriefing.Briefing storage pointer)"
+                              }
+                            },
+                            "id": 429,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "structConstructorCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "779:117:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Briefing_$384_memory",
+                              "typeString": "struct SafetyBriefing.Briefing memory"
+                            }
+                          },
+                          "src": "751:145:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Briefing_$384_storage",
+                            "typeString": "struct SafetyBriefing.Briefing storage ref"
+                          }
+                        },
+                        "id": 431,
+                        "nodeType": "ExpressionStatement",
+                        "src": "751:145:1"
+                      }
+                    ]
+                  },
+                  "id": 433,
+                  "nodeType": "IfStatement",
+                  "src": "528:379:1",
+                  "trueBody": {
+                    "id": 420,
+                    "nodeType": "Block",
+                    "src": "562:169:1",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 418,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 405,
+                              "name": "briefings",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 374,
+                              "src": "576:9:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Briefing_$384_storage_$",
+                                "typeString": "mapping(uint256 => struct SafetyBriefing.Briefing storage ref)"
+                              }
+                            },
+                            "id": 407,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 406,
+                              "name": "briefingsCount",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 376,
+                              "src": "586:14:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "nodeType": "IndexAccess",
+                            "src": "576:25:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Briefing_$384_storage",
+                              "typeString": "struct SafetyBriefing.Briefing storage ref"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "arguments": [
+                              {
+                                "argumentTypes": null,
+                                "id": 409,
+                                "name": "briefingsCount",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 376,
+                                "src": "630:14:1",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "expression": {
+                                  "argumentTypes": null,
+                                  "id": 410,
+                                  "name": "msg",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 562,
+                                  "src": "662:3:1",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_magic_message",
+                                    "typeString": "msg"
+                                  }
+                                },
+                                "id": 411,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "sender",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": null,
+                                "src": "662:10:1",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                }
+                              },
+                              {
+                                "argumentTypes": null,
+                                "arguments": [
+                                  {
+                                    "argumentTypes": null,
+                                    "hexValue": "30",
+                                    "id": 415,
+                                    "isConstant": false,
+                                    "isLValue": false,
+                                    "isPure": true,
+                                    "kind": "number",
+                                    "lValueRequested": false,
+                                    "nodeType": "Literal",
+                                    "src": "704:1:1",
+                                    "subdenomination": null,
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_rational_0_by_1",
+                                      "typeString": "int_const 0"
+                                    },
+                                    "value": "0"
+                                  }
+                                ],
+                                "expression": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_rational_0_by_1",
+                                      "typeString": "int_const 0"
+                                    }
+                                  ],
+                                  "id": 414,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "nodeType": "NewExpression",
+                                  "src": "690:13:1",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_function_objectcreation_pure$_t_uint256_$returns$_t_array$_t_uint256_$dyn_memory_$",
+                                    "typeString": "function (uint256) pure returns (uint256[] memory)"
+                                  },
+                                  "typeName": {
+                                    "baseType": {
+                                      "id": 412,
+                                      "name": "uint256",
+                                      "nodeType": "ElementaryTypeName",
+                                      "src": "694:7:1",
+                                      "typeDescriptions": {
+                                        "typeIdentifier": "t_uint256",
+                                        "typeString": "uint256"
+                                      }
+                                    },
+                                    "id": 413,
+                                    "length": null,
+                                    "nodeType": "ArrayTypeName",
+                                    "src": "694:9:1",
+                                    "typeDescriptions": {
+                                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                                      "typeString": "uint256[]"
+                                    }
+                                  }
+                                },
+                                "id": 416,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": true,
+                                "kind": "functionCall",
+                                "lValueRequested": false,
+                                "names": [],
+                                "nodeType": "FunctionCall",
+                                "src": "690:16:1",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_array$_t_uint256_$dyn_memory",
+                                  "typeString": "uint256[] memory"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                },
+                                {
+                                  "typeIdentifier": "t_array$_t_uint256_$dyn_memory",
+                                  "typeString": "uint256[] memory"
+                                }
+                              ],
+                              "id": 408,
+                              "name": "Briefing",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 384,
+                              "src": "604:8:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_struct$_Briefing_$384_storage_ptr_$",
+                                "typeString": "type(struct SafetyBriefing.Briefing storage pointer)"
+                              }
+                            },
+                            "id": 417,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "structConstructorCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "604:116:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Briefing_$384_memory",
+                              "typeString": "struct SafetyBriefing.Briefing memory"
+                            }
+                          },
+                          "src": "576:144:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Briefing_$384_storage",
+                            "typeString": "struct SafetyBriefing.Briefing storage ref"
+                          }
+                        },
+                        "id": 419,
+                        "nodeType": "ExpressionStatement",
+                        "src": "576:144:1"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 435,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "createBriefing",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 396,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 395,
+                  "name": "requiredBriefings",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 435,
+                  "src": "448:34:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                    "typeString": "uint256[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 393,
+                      "name": "uint256",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "448:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "id": 394,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "448:9:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                      "typeString": "uint256[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "447:36:1"
+            },
+            "returnParameters": {
+              "id": 397,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "491:0:1"
+            },
+            "scope": 472,
+            "src": "424:489:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 453,
+              "nodeType": "Block",
+              "src": "1083:78:1",
+              "statements": [
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 448,
+                        "name": "_clientAddress",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 437,
+                        "src": "1115:14:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 449,
+                        "name": "_briefingId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 439,
+                        "src": "1131:11:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 450,
+                        "name": "_validity",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 441,
+                        "src": "1144:9:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_string_memory_ptr",
+                          "typeString": "string memory"
+                        }
+                      ],
+                      "id": 447,
+                      "name": "BriefingVerified",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 392,
+                      "src": "1098:16:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (address,uint256,string memory)"
+                      }
+                    },
+                    "id": 451,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1098:56:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 452,
+                  "nodeType": "EmitStatement",
+                  "src": "1093:61:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 454,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "argumentTypes": null,
+                    "id": 444,
+                    "name": "_briefingId",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 439,
+                    "src": "1070:11:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                ],
+                "id": 445,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 443,
+                  "name": "isBriefingAuthority",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 471,
+                  "src": "1050:19:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$_t_uint256_$",
+                    "typeString": "modifier (uint256)"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "1050:32:1"
+              }
+            ],
+            "name": "verifyBriefing",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 442,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 437,
+                  "name": "_clientAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 454,
+                  "src": "952:22:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 436,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "952:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 439,
+                  "name": "_briefingId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 454,
+                  "src": "984:19:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 438,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "984:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 441,
+                  "name": "_validity",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 454,
+                  "src": "1013:23:1",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 440,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1013:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "942:100:1"
+            },
+            "returnParameters": {
+              "id": 446,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1083:0:1"
+            },
+            "scope": 472,
+            "src": "919:242:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 470,
+              "nodeType": "Block",
+              "src": "1355:151:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 465,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 459,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 562,
+                            "src": "1386:3:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 460,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1386:10:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "baseExpression": {
+                              "argumentTypes": null,
+                              "id": 461,
+                              "name": "briefings",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 374,
+                              "src": "1400:9:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Briefing_$384_storage_$",
+                                "typeString": "mapping(uint256 => struct SafetyBriefing.Briefing storage ref)"
+                              }
+                            },
+                            "id": 463,
+                            "indexExpression": {
+                              "argumentTypes": null,
+                              "id": 462,
+                              "name": "_id",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 456,
+                              "src": "1410:3:1",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              }
+                            },
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "nodeType": "IndexAccess",
+                            "src": "1400:14:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Briefing_$384_storage",
+                              "typeString": "struct SafetyBriefing.Briefing storage ref"
+                            }
+                          },
+                          "id": 464,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "briefingAuthority",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 380,
+                          "src": "1400:32:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "1386:46:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "43616c6c6572206973206e6f204272696566696e67617574686f72697479",
+                        "id": 466,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1446:32:1",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_c6ceb5ba9338c0674b447c9433149dc8e405bac3613825e448004a1ba49cd2b1",
+                          "typeString": "literal_string \"Caller is no Briefingauthority\""
+                        },
+                        "value": "Caller is no Briefingauthority"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_c6ceb5ba9338c0674b447c9433149dc8e405bac3613825e448004a1ba49cd2b1",
+                          "typeString": "literal_string \"Caller is no Briefingauthority\""
+                        }
+                      ],
+                      "id": 458,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        565,
+                        566
+                      ],
+                      "referencedDeclaration": 566,
+                      "src": "1365:7:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 467,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1365:123:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 468,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1365:123:1"
+                },
+                {
+                  "id": 469,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "1498:1:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 471,
+            "name": "isBriefingAuthority",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 457,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 456,
+                  "name": "_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 471,
+                  "src": "1342:11:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 455,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1342:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1341:13:1"
+            },
+            "src": "1313:193:1",
+            "visibility": "internal"
+          }
+        ],
+        "scope": 473,
+        "src": "66:1442:1"
+      }
+    ],
+    "src": "32:1477:1"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/SafetyBriefing.sol",
+      "exportedSymbols": {
+        "SafetyBriefing": [
+          472
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".22",
+            "<",
+            "0.8",
+            ".0"
+          ]
+        },
+        "id": 370,
+        "name": "PragmaDirective",
+        "src": "32:32:1"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            472
+          ],
+          "name": "SafetyBriefing",
+          "scope": 473
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "briefings",
+              "scope": 472,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(uint256 => struct SafetyBriefing.Briefing)",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(uint256 => struct SafetyBriefing.Briefing)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 371,
+                    "name": "ElementaryTypeName",
+                    "src": "104:7:1"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Briefing",
+                      "referencedDeclaration": 384,
+                      "type": "struct SafetyBriefing.Briefing"
+                    },
+                    "id": 372,
+                    "name": "UserDefinedTypeName",
+                    "src": "115:8:1"
+                  }
+                ],
+                "id": 373,
+                "name": "Mapping",
+                "src": "96:28:1"
+              }
+            ],
+            "id": 374,
+            "name": "VariableDeclaration",
+            "src": "96:45:1"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "briefingsCount",
+              "scope": 472,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint256",
+                  "type": "uint256"
+                },
+                "id": 375,
+                "name": "ElementaryTypeName",
+                "src": "147:7:1"
+              }
+            ],
+            "id": 376,
+            "name": "VariableDeclaration",
+            "src": "147:22:1"
+          },
+          {
+            "attributes": {
+              "canonicalName": "SafetyBriefing.Briefing",
+              "name": "Briefing",
+              "scope": 472,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "briefingId",
+                  "scope": 384,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint256",
+                      "type": "uint256"
+                    },
+                    "id": 377,
+                    "name": "ElementaryTypeName",
+                    "src": "202:7:1"
+                  }
+                ],
+                "id": 378,
+                "name": "VariableDeclaration",
+                "src": "202:18:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "briefingAuthority",
+                  "scope": 384,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 379,
+                    "name": "ElementaryTypeName",
+                    "src": "230:7:1"
+                  }
+                ],
+                "id": 380,
+                "name": "VariableDeclaration",
+                "src": "230:25:1"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "requiredBriefings",
+                  "scope": 384,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256[]",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "length": null,
+                      "type": "uint256[]"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 381,
+                        "name": "ElementaryTypeName",
+                        "src": "265:7:1"
+                      }
+                    ],
+                    "id": 382,
+                    "name": "ArrayTypeName",
+                    "src": "265:9:1"
+                  }
+                ],
+                "id": 383,
+                "name": "VariableDeclaration",
+                "src": "265:27:1"
+              }
+            ],
+            "id": 384,
+            "name": "StructDefinition",
+            "src": "176:123:1"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "BriefingVerified"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "clientAddress",
+                      "scope": 392,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 385,
+                        "name": "ElementaryTypeName",
+                        "src": "337:7:1"
+                      }
+                    ],
+                    "id": 386,
+                    "name": "VariableDeclaration",
+                    "src": "337:21:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "briefingId",
+                      "scope": 392,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 387,
+                        "name": "ElementaryTypeName",
+                        "src": "368:7:1"
+                      }
+                    ],
+                    "id": 388,
+                    "name": "VariableDeclaration",
+                    "src": "368:18:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "validity",
+                      "scope": 392,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 389,
+                        "name": "ElementaryTypeName",
+                        "src": "396:6:1"
+                      }
+                    ],
+                    "id": 390,
+                    "name": "VariableDeclaration",
+                    "src": "396:15:1"
+                  }
+                ],
+                "id": 391,
+                "name": "ParameterList",
+                "src": "327:90:1"
+              }
+            ],
+            "id": 392,
+            "name": "EventDefinition",
+            "src": "305:113:1"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "createBriefing",
+              "scope": 472,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "requiredBriefings",
+                      "scope": 435,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "uint256[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "uint256[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint256",
+                              "type": "uint256"
+                            },
+                            "id": 393,
+                            "name": "ElementaryTypeName",
+                            "src": "448:7:1"
+                          }
+                        ],
+                        "id": 394,
+                        "name": "ArrayTypeName",
+                        "src": "448:9:1"
+                      }
+                    ],
+                    "id": 395,
+                    "name": "VariableDeclaration",
+                    "src": "448:34:1"
+                  }
+                ],
+                "id": 396,
+                "name": "ParameterList",
+                "src": "447:36:1"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 397,
+                "name": "ParameterList",
+                "src": "491:0:1"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "++",
+                          "prefix": false,
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 376,
+                              "type": "uint256",
+                              "value": "briefingsCount"
+                            },
+                            "id": 398,
+                            "name": "Identifier",
+                            "src": "501:14:1"
+                          }
+                        ],
+                        "id": 399,
+                        "name": "UnaryOperation",
+                        "src": "501:16:1"
+                      }
+                    ],
+                    "id": 400,
+                    "name": "ExpressionStatement",
+                    "src": "501:16:1"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": ">",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "length",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 395,
+                                  "type": "uint256[] memory",
+                                  "value": "requiredBriefings"
+                                },
+                                "id": 401,
+                                "name": "Identifier",
+                                "src": "532:17:1"
+                              }
+                            ],
+                            "id": 402,
+                            "name": "MemberAccess",
+                            "src": "532:24:1"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 403,
+                            "name": "Literal",
+                            "src": "559:1:1"
+                          }
+                        ],
+                        "id": 404,
+                        "name": "BinaryOperation",
+                        "src": "532:28:1"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "struct SafetyBriefing.Briefing storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": true,
+                                      "type": "struct SafetyBriefing.Briefing storage ref"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 374,
+                                          "type": "mapping(uint256 => struct SafetyBriefing.Briefing storage ref)",
+                                          "value": "briefings"
+                                        },
+                                        "id": 405,
+                                        "name": "Identifier",
+                                        "src": "576:9:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 376,
+                                          "type": "uint256",
+                                          "value": "briefingsCount"
+                                        },
+                                        "id": 406,
+                                        "name": "Identifier",
+                                        "src": "586:14:1"
+                                      }
+                                    ],
+                                    "id": 407,
+                                    "name": "IndexAccess",
+                                    "src": "576:25:1"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": true,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "struct SafetyBriefing.Briefing memory",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            {
+                                              "typeIdentifier": "t_uint256",
+                                              "typeString": "uint256"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_address_payable",
+                                              "typeString": "address payable"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_array$_t_uint256_$dyn_memory",
+                                              "typeString": "uint256[] memory"
+                                            }
+                                          ],
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 384,
+                                          "type": "type(struct SafetyBriefing.Briefing storage pointer)",
+                                          "value": "Briefing"
+                                        },
+                                        "id": 408,
+                                        "name": "Identifier",
+                                        "src": "604:8:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 376,
+                                          "type": "uint256",
+                                          "value": "briefingsCount"
+                                        },
+                                        "id": 409,
+                                        "name": "Identifier",
+                                        "src": "630:14:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "member_name": "sender",
+                                          "referencedDeclaration": null,
+                                          "type": "address payable"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 562,
+                                              "type": "msg",
+                                              "value": "msg"
+                                            },
+                                            "id": 410,
+                                            "name": "Identifier",
+                                            "src": "662:3:1"
+                                          }
+                                        ],
+                                        "id": 411,
+                                        "name": "MemberAccess",
+                                        "src": "662:10:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": true,
+                                          "isStructConstructorCall": false,
+                                          "lValueRequested": false,
+                                          "names": [
+                                            null
+                                          ],
+                                          "type": "uint256[] memory",
+                                          "type_conversion": false
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": [
+                                                {
+                                                  "typeIdentifier": "t_rational_0_by_1",
+                                                  "typeString": "int_const 0"
+                                                }
+                                              ],
+                                              "isConstant": false,
+                                              "isLValue": false,
+                                              "isPure": true,
+                                              "lValueRequested": false,
+                                              "type": "function (uint256) pure returns (uint256[] memory)"
+                                            },
+                                            "children": [
+                                              {
+                                                "attributes": {
+                                                  "length": null,
+                                                  "type": "uint256[]"
+                                                },
+                                                "children": [
+                                                  {
+                                                    "attributes": {
+                                                      "name": "uint256",
+                                                      "type": "uint256"
+                                                    },
+                                                    "id": 412,
+                                                    "name": "ElementaryTypeName",
+                                                    "src": "694:7:1"
+                                                  }
+                                                ],
+                                                "id": 413,
+                                                "name": "ArrayTypeName",
+                                                "src": "694:9:1"
+                                              }
+                                            ],
+                                            "id": 414,
+                                            "name": "NewExpression",
+                                            "src": "690:13:1"
+                                          },
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "hexvalue": "30",
+                                              "isConstant": false,
+                                              "isLValue": false,
+                                              "isPure": true,
+                                              "lValueRequested": false,
+                                              "subdenomination": null,
+                                              "token": "number",
+                                              "type": "int_const 0",
+                                              "value": "0"
+                                            },
+                                            "id": 415,
+                                            "name": "Literal",
+                                            "src": "704:1:1"
+                                          }
+                                        ],
+                                        "id": 416,
+                                        "name": "FunctionCall",
+                                        "src": "690:16:1"
+                                      }
+                                    ],
+                                    "id": 417,
+                                    "name": "FunctionCall",
+                                    "src": "604:116:1"
+                                  }
+                                ],
+                                "id": 418,
+                                "name": "Assignment",
+                                "src": "576:144:1"
+                              }
+                            ],
+                            "id": 419,
+                            "name": "ExpressionStatement",
+                            "src": "576:144:1"
+                          }
+                        ],
+                        "id": 420,
+                        "name": "Block",
+                        "src": "562:169:1"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "=",
+                                  "type": "struct SafetyBriefing.Briefing storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": true,
+                                      "type": "struct SafetyBriefing.Briefing storage ref"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 374,
+                                          "type": "mapping(uint256 => struct SafetyBriefing.Briefing storage ref)",
+                                          "value": "briefings"
+                                        },
+                                        "id": 421,
+                                        "name": "Identifier",
+                                        "src": "751:9:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 376,
+                                          "type": "uint256",
+                                          "value": "briefingsCount"
+                                        },
+                                        "id": 422,
+                                        "name": "Identifier",
+                                        "src": "761:14:1"
+                                      }
+                                    ],
+                                    "id": 423,
+                                    "name": "IndexAccess",
+                                    "src": "751:25:1"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "isStructConstructorCall": true,
+                                      "lValueRequested": false,
+                                      "names": [
+                                        null
+                                      ],
+                                      "type": "struct SafetyBriefing.Briefing memory",
+                                      "type_conversion": false
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": [
+                                            {
+                                              "typeIdentifier": "t_uint256",
+                                              "typeString": "uint256"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_address_payable",
+                                              "typeString": "address payable"
+                                            },
+                                            {
+                                              "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+                                              "typeString": "uint256[] memory"
+                                            }
+                                          ],
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 384,
+                                          "type": "type(struct SafetyBriefing.Briefing storage pointer)",
+                                          "value": "Briefing"
+                                        },
+                                        "id": 424,
+                                        "name": "Identifier",
+                                        "src": "779:8:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 376,
+                                          "type": "uint256",
+                                          "value": "briefingsCount"
+                                        },
+                                        "id": 425,
+                                        "name": "Identifier",
+                                        "src": "805:14:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "isConstant": false,
+                                          "isLValue": false,
+                                          "isPure": false,
+                                          "lValueRequested": false,
+                                          "member_name": "sender",
+                                          "referencedDeclaration": null,
+                                          "type": "address payable"
+                                        },
+                                        "children": [
+                                          {
+                                            "attributes": {
+                                              "argumentTypes": null,
+                                              "overloadedDeclarations": [
+                                                null
+                                              ],
+                                              "referencedDeclaration": 562,
+                                              "type": "msg",
+                                              "value": "msg"
+                                            },
+                                            "id": 426,
+                                            "name": "Identifier",
+                                            "src": "837:3:1"
+                                          }
+                                        ],
+                                        "id": 427,
+                                        "name": "MemberAccess",
+                                        "src": "837:10:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 395,
+                                          "type": "uint256[] memory",
+                                          "value": "requiredBriefings"
+                                        },
+                                        "id": 428,
+                                        "name": "Identifier",
+                                        "src": "865:17:1"
+                                      }
+                                    ],
+                                    "id": 429,
+                                    "name": "FunctionCall",
+                                    "src": "779:117:1"
+                                  }
+                                ],
+                                "id": 430,
+                                "name": "Assignment",
+                                "src": "751:145:1"
+                              }
+                            ],
+                            "id": 431,
+                            "name": "ExpressionStatement",
+                            "src": "751:145:1"
+                          }
+                        ],
+                        "id": 432,
+                        "name": "Block",
+                        "src": "737:170:1"
+                      }
+                    ],
+                    "id": 433,
+                    "name": "IfStatement",
+                    "src": "528:379:1"
+                  }
+                ],
+                "id": 434,
+                "name": "Block",
+                "src": "491:422:1"
+              }
+            ],
+            "id": 435,
+            "name": "FunctionDefinition",
+            "src": "424:489:1"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "name": "verifyBriefing",
+              "scope": 472,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_clientAddress",
+                      "scope": 454,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 436,
+                        "name": "ElementaryTypeName",
+                        "src": "952:7:1"
+                      }
+                    ],
+                    "id": 437,
+                    "name": "VariableDeclaration",
+                    "src": "952:22:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_briefingId",
+                      "scope": 454,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 438,
+                        "name": "ElementaryTypeName",
+                        "src": "984:7:1"
+                      }
+                    ],
+                    "id": 439,
+                    "name": "VariableDeclaration",
+                    "src": "984:19:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_validity",
+                      "scope": 454,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 440,
+                        "name": "ElementaryTypeName",
+                        "src": "1013:6:1"
+                      }
+                    ],
+                    "id": 441,
+                    "name": "VariableDeclaration",
+                    "src": "1013:23:1"
+                  }
+                ],
+                "id": 442,
+                "name": "ParameterList",
+                "src": "942:100:1"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 446,
+                "name": "ParameterList",
+                "src": "1083:0:1"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 471,
+                      "type": "modifier (uint256)",
+                      "value": "isBriefingAuthority"
+                    },
+                    "id": 443,
+                    "name": "Identifier",
+                    "src": "1050:19:1"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 439,
+                      "type": "uint256",
+                      "value": "_briefingId"
+                    },
+                    "id": 444,
+                    "name": "Identifier",
+                    "src": "1070:11:1"
+                  }
+                ],
+                "id": 445,
+                "name": "ModifierInvocation",
+                "src": "1050:32:1"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_string_memory_ptr",
+                                  "typeString": "string memory"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 392,
+                              "type": "function (address,uint256,string memory)",
+                              "value": "BriefingVerified"
+                            },
+                            "id": 447,
+                            "name": "Identifier",
+                            "src": "1098:16:1"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 437,
+                              "type": "address",
+                              "value": "_clientAddress"
+                            },
+                            "id": 448,
+                            "name": "Identifier",
+                            "src": "1115:14:1"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 439,
+                              "type": "uint256",
+                              "value": "_briefingId"
+                            },
+                            "id": 449,
+                            "name": "Identifier",
+                            "src": "1131:11:1"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 441,
+                              "type": "string memory",
+                              "value": "_validity"
+                            },
+                            "id": 450,
+                            "name": "Identifier",
+                            "src": "1144:9:1"
+                          }
+                        ],
+                        "id": 451,
+                        "name": "FunctionCall",
+                        "src": "1098:56:1"
+                      }
+                    ],
+                    "id": 452,
+                    "name": "EmitStatement",
+                    "src": "1093:61:1"
+                  }
+                ],
+                "id": 453,
+                "name": "Block",
+                "src": "1083:78:1"
+              }
+            ],
+            "id": 454,
+            "name": "FunctionDefinition",
+            "src": "919:242:1"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "name": "isBriefingAuthority",
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_id",
+                      "scope": 471,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 455,
+                        "name": "ElementaryTypeName",
+                        "src": "1342:7:1"
+                      }
+                    ],
+                    "id": 456,
+                    "name": "VariableDeclaration",
+                    "src": "1342:11:1"
+                  }
+                ],
+                "id": 457,
+                "name": "ParameterList",
+                "src": "1341:13:1"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_c6ceb5ba9338c0674b447c9433149dc8e405bac3613825e448004a1ba49cd2b1",
+                                  "typeString": "literal_string \"Caller is no Briefingauthority\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                565,
+                                566
+                              ],
+                              "referencedDeclaration": 566,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 458,
+                            "name": "Identifier",
+                            "src": "1365:7:1"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "==",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "sender",
+                                  "referencedDeclaration": null,
+                                  "type": "address payable"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 562,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 459,
+                                    "name": "Identifier",
+                                    "src": "1386:3:1"
+                                  }
+                                ],
+                                "id": 460,
+                                "name": "MemberAccess",
+                                "src": "1386:10:1"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "briefingAuthority",
+                                  "referencedDeclaration": 380,
+                                  "type": "address"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": true,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "type": "struct SafetyBriefing.Briefing storage ref"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 374,
+                                          "type": "mapping(uint256 => struct SafetyBriefing.Briefing storage ref)",
+                                          "value": "briefings"
+                                        },
+                                        "id": 461,
+                                        "name": "Identifier",
+                                        "src": "1400:9:1"
+                                      },
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 456,
+                                          "type": "uint256",
+                                          "value": "_id"
+                                        },
+                                        "id": 462,
+                                        "name": "Identifier",
+                                        "src": "1410:3:1"
+                                      }
+                                    ],
+                                    "id": 463,
+                                    "name": "IndexAccess",
+                                    "src": "1400:14:1"
+                                  }
+                                ],
+                                "id": 464,
+                                "name": "MemberAccess",
+                                "src": "1400:32:1"
+                              }
+                            ],
+                            "id": 465,
+                            "name": "BinaryOperation",
+                            "src": "1386:46:1"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "43616c6c6572206973206e6f204272696566696e67617574686f72697479",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Caller is no Briefingauthority\"",
+                              "value": "Caller is no Briefingauthority"
+                            },
+                            "id": 466,
+                            "name": "Literal",
+                            "src": "1446:32:1"
+                          }
+                        ],
+                        "id": 467,
+                        "name": "FunctionCall",
+                        "src": "1365:123:1"
+                      }
+                    ],
+                    "id": 468,
+                    "name": "ExpressionStatement",
+                    "src": "1365:123:1"
+                  },
+                  {
+                    "id": 469,
+                    "name": "PlaceholderStatement",
+                    "src": "1498:1:1"
+                  }
+                ],
+                "id": 470,
+                "name": "Block",
+                "src": "1355:151:1"
+              }
+            ],
+            "id": 471,
+            "name": "ModifierDefinition",
+            "src": "1313:193:1"
+          }
+        ],
+        "id": 472,
+        "name": "ContractDefinition",
+        "src": "66:1442:1"
+      }
+    ],
+    "id": 473,
+    "name": "SourceUnit",
+    "src": "32:1477:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2022-08-17T12:38:58.545Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
