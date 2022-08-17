@@ -272,6 +272,13 @@ function createAdvert() {
   var permission = document.getElementById("permission");
   var permissionText = permission.options[permission.selectedIndex].text;
 
+  var requiredBreifinfAddresses = document.getElementById(
+    "requiredBreifinfAddresses"
+  ).value;
+
+  if (requiredBreifinfAddresses) {
+  }
+
   if (!imagePath) {
     imagePath =
       "https://cdn.prod.www.spiegel.de/images/6bbd78cd-0001-0004-0000-000001454027_w1600_r1.4790419161676647_fpx33.81_fpy50.jpg";
