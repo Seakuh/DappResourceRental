@@ -303,7 +303,6 @@ function createAdvert() {
 
 function rentResource(id) {
   App.contracts.ResourceRental.deployed().then(function (instance) {
-    // var idData = id.getAttribute("data-id");
     return instance
       .rentResource(id, { from: currentAddress })
       .then(function (event) {
