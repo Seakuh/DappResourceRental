@@ -230,6 +230,7 @@ App = {
         console.log(typeof _toTimestamp);
         resourceTemplate.find(".event-transaction-number").text(tx);
         resourceTemplate.find(".event-renter-number").text(_renter);
+
         resourceTemplate
           .find(".from-rent-timestamp")
           .text(() => new Date(parseInt(_fromTimeStamp)));
@@ -272,12 +273,19 @@ function createAdvert() {
   var permission = document.getElementById("permission");
   var permissionText = permission.options[permission.selectedIndex].text;
 
+  const permissionObject = Object.freeze({
+    ALL: 1,
+    STUDENT: 2,
+    SCIENTIFIC_ASSISTANT: 3,
+    PROFESSOR: 4,
+    ADMIN: 5,
+  });
+
   var requiredBreifinfAddresses = document.getElementById(
     "requiredBreifinfAddresses"
   ).value;
 
-  if (requiredBreifinfAddresses) {
-  }
+  console.log(requiredBreifinfAddresses);
 
   if (!imagePath) {
     imagePath =
@@ -295,7 +303,7 @@ function createAdvert() {
       location,
       convertedFromTimeStamp.toString(),
       convertedToTimeStamp.toString(),
-      permissionText,
+      permissionObject[permissionText],
       { from: currentAddress }
     );
   });
@@ -307,6 +315,16 @@ function rentResource(id) {
       .rentResource(id, { from: currentAddress })
       .then(function (event) {
         saveEventToLocalStorage(event);
+      });
+  });
+}
+
+function sayHello() {
+  App.contracts.ResourceRental.deployed().then(function (instance) {
+    return instance
+      .callSafetyBriefing({ from: currentAddress })
+      .then(function (event) {
+        console.log(event);
       });
   });
 }

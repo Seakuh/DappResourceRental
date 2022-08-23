@@ -1,0 +1,122 @@
+{
+  "contractName": "Eco",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Eco.sol\":\"Eco\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Eco.sol\":{\"keccak256\":\"0x97b4b08229d43f05503aae88a3de16359e53ac6bd32df6fb35eba0f106480587\",\"urls\":[\"bzz-raw://a1c61444107710cf5ccbb0e5992ffe71b9ab45ff69321ba206d6b3022002c1bc\",\"dweb:/ipfs/QmNVbvJFHiZZ5VGoeFzB9byz8uXtwv5L9UPkvpC68vfFTK\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a7231582002d65a3199492c9a8aa7c69ae7cb8d4451bfd7dd5fc727a9f22376fd4f1c4e1764736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a7231582002d65a3199492c9a8aa7c69ae7cb8d4451bfd7dd5fc727a9f22376fd4f1c4e1764736f6c63430005100032",
+  "sourceMap": "66:15:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;66:15:0;;;;;;;",
+  "deployedSourceMap": "66:15:0:-;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.8.0;\n\ncontract Eco {}\n",
+  "sourcePath": "/home/dizzle/Dev/Dapp/contracts/Eco.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Eco.sol",
+    "exportedSymbols": {
+      "Eco": [
+        2
+      ]
+    },
+    "id": 3,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:32:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 2,
+        "linearizedBaseContracts": [
+          2
+        ],
+        "name": "Eco",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 3,
+        "src": "66:15:0"
+      }
+    ],
+    "src": "32:50:0"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/Eco.sol",
+      "exportedSymbols": {
+        "Eco": [
+          2
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".22",
+            "<",
+            "0.8",
+            ".0"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "32:32:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            2
+          ],
+          "name": "Eco",
+          "nodes": [
+            null
+          ],
+          "scope": 3
+        },
+        "id": 2,
+        "name": "ContractDefinition",
+        "src": "66:15:0"
+      }
+    ],
+    "id": 3,
+    "name": "SourceUnit",
+    "src": "32:50:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.7",
+  "updatedAt": "2022-08-20T12:54:27.657Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

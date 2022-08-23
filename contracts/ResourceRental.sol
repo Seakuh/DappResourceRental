@@ -144,22 +144,81 @@ contract ResourceRental {
         string memory _location,
         string memory _fromTimeStamp,
         string memory _toTimeStamp,
-        Permission _permission // uint256 _universityId // uint8[] memory _requiredTraining
+        uint8 _permission // uint256 _universityId // uint8[] memory _requiredTraining
     ) public {
         // require();
 
         // represent Id of the renter
-        resourcesCount++;
-        resources[resourcesCount] = Resource(
-            resourcesCount,
-            _name,
-            _metaDataLink,
-            _location,
-            _fromTimeStamp,
-            _toTimeStamp,
-            _permission
-            // _requiredTraining
-        );
+        if (_permission == 1) {
+            resourcesCount++;
+            resources[resourcesCount] = Resource(
+                resourcesCount,
+                _name,
+                _metaDataLink,
+                _location,
+                _fromTimeStamp,
+                _toTimeStamp,
+                Permission.ALL
+                // _requiredTraining
+            );
+        }
+
+        if (_permission == 2) {
+            resourcesCount++;
+            resources[resourcesCount] = Resource(
+                resourcesCount,
+                _name,
+                _metaDataLink,
+                _location,
+                _fromTimeStamp,
+                _toTimeStamp,
+                Permission.STUDENT
+                // _requiredTraining
+            );
+        }
+
+        if (_permission == 3) {
+            resourcesCount++;
+            resources[resourcesCount] = Resource(
+                resourcesCount,
+                _name,
+                _metaDataLink,
+                _location,
+                _fromTimeStamp,
+                _toTimeStamp,
+                Permission.SCIENTIFIC_ASSISTANT
+                // _requiredTraining
+            );
+        }
+
+        if (_permission == 4) {
+            resourcesCount++;
+            resources[resourcesCount] = Resource(
+                resourcesCount,
+                _name,
+                _metaDataLink,
+                _location,
+                _fromTimeStamp,
+                _toTimeStamp,
+                Permission.PROFESSOR
+                // _requiredTraining
+            );
+        }
+
+        if (_permission == 5) {
+            resourcesCount++;
+            resources[resourcesCount] = Resource(
+                resourcesCount,
+                _name,
+                _metaDataLink,
+                _location,
+                _fromTimeStamp,
+                _toTimeStamp,
+                Permission.ADMIN
+                // _requiredTraining
+            );
+        }
+
         emit ResourceCreated(resourcesCount, msg.sender);
     }
 
@@ -171,27 +230,24 @@ contract ResourceRental {
     }
 
     function rentResource(uint256 _id) public {
-        Resource memory resource = resources[_id];
+        if (resources[_id].permission == Permission.ALL) {
+            Resource memory resource = resources[_id];
 
-        rentalsCount++;
-        rentals[rentalsCount] = Rental(
-            msg.sender,
-            resource.name,
-            rentalsCount,
-            resource.resourceId,
-            resource.fromTimeStamp,
-            resource.toTimeStamp
-        );
+            delete resources[_id];
 
-        delete resources[_id];
+            emit ResourceRented(
+                msg.sender,
+                _id,
+                resource.fromTimeStamp,
+                resource.toTimeStamp,
+                block.timestamp
+            );
+        }
+    }
 
-        emit ResourceRented(
-            msg.sender,
-            _id,
-            resource.fromTimeStamp,
-            resource.toTimeStamp,
-            block.timestamp
-        );
+    function callSafetyBriefing() public {
+        SafetyBriefing called = SafetyBriefing(msg.sender);
+        called.sendMessage("Hi in der Blockchain");
     }
 
     //----------------------------------------------------------
@@ -232,7 +288,7 @@ contract ResourceRental {
             "Furtwangen, Germany",
             "1654782938174",
             "1655992478797",
-            Permission.ALL
+            1
         );
 
         addResource(
@@ -241,7 +297,7 @@ contract ResourceRental {
             "Mannheim, Germani",
             "1654782938174",
             "1655992478797",
-            Permission.ALL
+            1
         );
         addResource(
             "Theater",
@@ -249,7 +305,7 @@ contract ResourceRental {
             "Rom, Italy",
             "1654782938174",
             "1655992478797",
-            Permission.ALL
+            1
         );
         addResource(
             "Server Room",
@@ -257,7 +313,7 @@ contract ResourceRental {
             "Paris, France",
             "1654782938174",
             "1655992478797",
-            Permission.ALL
+            1
         );
         addResource(
             "Test Room",
@@ -265,7 +321,7 @@ contract ResourceRental {
             "Barcelona, Spain",
             "1654782938174",
             "1655992478797",
-            Permission.ALL
+            1
         );
         addResource(
             "Schulungszentrum Darmstadt",
@@ -273,7 +329,7 @@ contract ResourceRental {
             "Darmstadt, Germany",
             "1654782938174",
             "1655992478797",
-            Permission.ALL
+            1
         );
 
         // add universities who are allowed to create resrouces
@@ -290,5 +346,113 @@ contract ResourceRental {
         // "The Hague University of Applied Sciences",
         // 0xE82971C4A32C82556F072C73125e48C4c9c33a59
         // );
+    }
+}
+
+contract SafetyBriefing {
+    mapping(uint256 => Briefing) public briefings;
+    uint256 briefingsCount;
+
+    struct Briefing {
+        uint256 briefingId;
+        address briefingAuthority;
+        uint256[] requiredBriefings;
+    }
+
+    event BriefingVerified(
+        address clientAddress,
+        uint256 briefingId,
+        string validity
+    );
+
+    event contractCalled(string message);
+
+    function sendMessage(string memory message) public {
+        emit contractCalled(message);
+    }
+
+    function createBriefing(uint256[] memory requiredBriefings) public {
+        briefingsCount++;
+
+        if (requiredBriefings.length > 0) {
+            briefings[briefingsCount] = Briefing(
+                briefingsCount,
+                msg.sender,
+                new uint256[](0)
+            );
+        } else {
+            briefings[briefingsCount] = Briefing(
+                briefingsCount,
+                msg.sender,
+                requiredBriefings
+            );
+        }
+    }
+
+    function verifyBriefing(
+        address _clientAddress,
+        uint256 _briefingId,
+        string memory _validity
+    ) public isBriefingAuthority(_briefingId) {
+        emit BriefingVerified(_clientAddress, _briefingId, _validity);
+    }
+
+    //----------------------------------------------------------
+    // Modifier
+    //----------------------------------------------------------
+    modifier isBriefingAuthority(uint256 _id) {
+        require(
+            msg.sender == briefings[_id].briefingAuthority,
+            "Caller is no Briefingauthority"
+        );
+        _;
+    }
+}
+
+// Request Rental ----------------------------------------------------------
+
+contract RequestRental {
+    //----------------------------------------------------------
+    // Attributes
+    //----------------------------------------------------------
+
+    address resourceOwner;
+    mapping(address => Resource) public resource;
+
+    //----------------------------------------------------------
+    // Structs
+    //----------------------------------------------------------
+
+    struct RentalRequest {
+        string _fromTimeStamp;
+        string _toTimestamp;
+    }
+
+    struct Resource {
+        address resourceAddress;
+    }
+
+    //----------------------------------------------------------
+    // Events
+    //----------------------------------------------------------
+
+    event addAddress(string name);
+    event ownserChanged(address newOwner);
+
+    //----------------------------------------------------------
+    // Functions
+    //----------------------------------------------------------
+
+    function changeResourceOwer() public {
+        resourceOwner = msg.sender;
+    }
+
+    function requestRental(
+        uint256 _resourceId,
+        string memory _fromTimeStamp,
+        string memory _toTimestamp,
+        uint256 _rentalTimeStamp
+    ) public {
+        // requestAllowFromOwner();
     }
 }
