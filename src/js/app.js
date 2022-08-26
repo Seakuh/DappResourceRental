@@ -1,5 +1,6 @@
 // Template
 // from truffle example https://github.com/truffle-box/pet-shop-box
+// var Personal = require("web3-eth-personal");
 
 var resourceRentalContract;
 var accountAddress;
@@ -46,6 +47,7 @@ App = {
       web3 = new Web3(App.web3Provider);
       App.showUserAddress(currentAddress);
     }
+
     return App.initContract();
   },
 
