@@ -7,39 +7,21 @@ var currentAddress;
 
 //-------------------------------------------------------
 
+// Address of the Bloxberg Contract
 const bloxbergContractAddress =
   "0x9aa655d59a6ba1663c1520fb79e1b5fcf55f1c35ab46f29ebdb1b4bee0ccf3fc";
 
 //-------------------------------------------------------
 
+// App Object with basic infromation
 App = {
   web3Provider: null,
   contracts: {},
   account: "0x0",
 
+  // first entry function when entering the application
   init: function () {
-    return App.initResources();
-  },
-
-  initResources: async function () {
-    // Load resources.
-    // $.getJSON("../resources.json", function (data) {
-    //   var resourcesRow = $("#resourcesRow");
-    //   var resourceTemplate = $("#resourceTemplate");
-
-    //   for (i = 0; i < data.length; i++) {
-    //     resourceTemplate.find(".panel-title").text(data[i].name);
-    //     resourceTemplate.find("img").attr("src", data[i].picture);
-    //     resourceTemplate.find(".resource-breed").text(data[i].breed);
-    //     resourceTemplate.find(".resource-age").text(data[i].age);
-    //     resourceTemplate.find(".resource-location").text(data[i].location);
-    //     resourceTemplate.find(".btn-rent").attr("data-id", data[i].id);
-
-    //     resourcesRow.append(resourceTemplate.html());
-    //   }
-    // });
-
-    return await App.initWeb3();
+    return App.initWeb3();
   },
 
   // init connection to local Blockchain
@@ -60,18 +42,22 @@ App = {
       App.web3Provider = new Web3.providers.HttpProvider(
         "http://localhost:5745"
       );
+      // use the web3 Provider
       web3 = new Web3(App.web3Provider);
       App.showUserAddress(currentAddress);
     }
     return App.initContract();
   },
 
+  // Display the user address on the account address attribute
   showUserAddress: function (address) {
     accountAddress = address;
     var loaderAddress = $("#loaderAddress");
+    // show hint if the user is not conneced to metamask
     if (!address) {
       address = "login to Metamask";
     }
+    // hide loader and show the account address
     loaderAddress.hide();
     return $("#accountAddress").html("Your Account: " + address);
   },
@@ -89,6 +75,8 @@ App = {
     });
   },
 
+  // init savetybriefing contract
+  // wip
   initTrainingValidateContract: function () {
     $.getJSON("TrainingValidate.json", function (resource) {
       // Instantiate a new truffle contract from the artifact
@@ -120,23 +108,15 @@ App = {
     loader.show();
     content.hide();
 
-    // // Load account data
-    // web3.eth.getCoinbase(function (err, account) {
-    //   if (err === null) {
-    //     App.account = account;
-    //     $("#accountAddress").html("Your Account: " + account);
-    //   }
-    // });
-
     // Load contract data
     App.contracts.ResourceRental.deployed()
       .then(function (instance) {
+        // check is user a university with blockchain call isSenderUniversity
         var isUniversity = instance.isSenderUniversity(1);
         var createAdvert = $("#create-advert");
         createAdvert.hide();
 
         if (isUniversity) {
-          console.log("Is University");
           createAdvert.show();
         }
         return instance;
@@ -147,12 +127,8 @@ App = {
         return resourceContractInstance.resourcesCount();
       })
       .then(function (resourcesCount) {
-        var resourcesResults = $("#resroucesResults");
-        // resourcesCount.empty();
-
-        var resourcesSelect = $("#resourcesSelect");
-        // resourcesCount.empty();
-
+        // loop over ressources and fill html template with ressources attributes
+        // append them to html file
         for (var i = 1; i <= resourcesCount; i++) {
           resourceContractInstance.resources(i).then(function (resource) {
             if (!resource[1]) {
@@ -179,22 +155,6 @@ App = {
             resourceTemplate.find(".btn-rent").attr("data-id", id);
 
             resourcesRow.append(resourceTemplate.html());
-
-            // // Render resource Result
-            // var resourceTemplate =
-            //   "<tr><th>" +
-            //   id +
-            //   "</th><td>" +
-            //   name +
-            //   "</td><td>" +
-            //   voteCount +
-            //   "</td></tr>";
-            // resourcesResults.append(resourceTemplate);
-
-            // Render resource ballot option
-            // var resourceOption =
-            //   "<option value='" + id + "' >" + name + "</ option>";
-            // resourcesSelect.append(resourceOption);
           });
         }
       })
@@ -207,17 +167,14 @@ App = {
     $(document).on("click", ".btn-rent", App.handlerent);
   },
 
-  markrented: function () {
-    /*
-     * Replace me...
-     */
-  },
-
+  // Fetch Events from local storage
+  // and show rental relevant event information on the application
   renderUserReantals: function () {
     var events = JSON.parse(localStorage.getItem("UserRentals")) || [];
+    // get row from html file to append them later
     var resourcesRow = $("#userRentalsRow");
+    // get tamplate from html file to fill it with event content
     var resourceTemplate = $("#userRentalsTemplate");
-    console.log(events);
 
     if (events) {
       for (var i = 1; i <= events.length; i++) {
@@ -231,6 +188,7 @@ App = {
         resourceTemplate.find(".event-transaction-number").text(tx);
         resourceTemplate.find(".event-renter-number").text(_renter);
 
+        // convert _fromTimeStamp to date and show it on the screen
         resourceTemplate
           .find(".from-rent-timestamp")
           .text(() => new Date(parseInt(_fromTimeStamp)));
@@ -241,16 +199,6 @@ App = {
       }
     }
   },
-
-  handlerent: function (event) {
-    event.preventDefault();
-
-    var resourceId = parseInt($(event.target).data("id"));
-
-    /*
-     * Replace me...
-     */
-  },
 };
 
 $(function () {
@@ -258,6 +206,8 @@ $(function () {
     App.init();
   });
 });
+
+// User Interaction Functions ----------------------------------------------------------------
 
 function createAdvert() {
   var name = document.getElementById("resourceName").value;
@@ -273,6 +223,7 @@ function createAdvert() {
   var permission = document.getElementById("permission");
   var permissionText = permission.options[permission.selectedIndex].text;
 
+  // Enum representation of the Smart Contract Permission enum
   const permissionObject = Object.freeze({
     ALL: 1,
     STUDENT: 2,
@@ -287,6 +238,7 @@ function createAdvert() {
 
   console.log(requiredBreifinfAddresses);
 
+  // set default image path if no image path is provided from the user
   if (!imagePath) {
     imagePath =
       "https://cdn.prod.www.spiegel.de/images/6bbd78cd-0001-0004-0000-000001454027_w1600_r1.4790419161676647_fpx33.81_fpy50.jpg";
@@ -319,6 +271,7 @@ function rentResource(id) {
   });
 }
 
+// Test function to interact with savetyBriefing Contract from the resourceRental contract
 function sayHello() {
   App.contracts.ResourceRental.deployed().then(function (instance) {
     return instance
@@ -329,6 +282,7 @@ function sayHello() {
   });
 }
 
+// save the event to the local storage of the user
 function saveEventToLocalStorage(event) {
   var oldEvents = JSON.parse(localStorage.getItem("UserRentals")) || [];
 
@@ -337,6 +291,7 @@ function saveEventToLocalStorage(event) {
   localStorage.setItem("UserRentals", JSON.stringify(oldEvents));
 }
 
+// Date format functions
 function convertToDateFormat(timestamp) {
   var date = new Date(timestamp);
   return date;
