@@ -355,6 +355,7 @@ contract SafetyBriefing {
 
     struct Briefing {
         uint256 briefingId;
+        string briefingName;
         address briefingAuthority;
         uint256[] requiredBriefings;
     }
@@ -371,18 +372,23 @@ contract SafetyBriefing {
         emit contractCalled(message);
     }
 
-    function createBriefing(uint256[] memory requiredBriefings) public {
+    function createBriefing(
+        uint256[] memory requiredBriefings,
+        string memory _briefingName
+    ) public {
         briefingsCount++;
 
         if (requiredBriefings.length > 0) {
             briefings[briefingsCount] = Briefing(
                 briefingsCount,
+                _briefingName,
                 msg.sender,
                 new uint256[](0)
             );
         } else {
             briefings[briefingsCount] = Briefing(
                 briefingsCount,
+                _briefingName,
                 msg.sender,
                 requiredBriefings
             );
