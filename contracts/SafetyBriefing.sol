@@ -8,7 +8,7 @@ contract SafetyBriefing {
     struct Briefing {
         uint256 briefingId;
         address briefingAuthority;
-        uint256[] requiredBriefings;
+        // uint256[] requiredBriefings;
     }
 
     event BriefingVerified(
@@ -17,22 +17,10 @@ contract SafetyBriefing {
         string validity
     );
 
-    function createBriefing(uint256[] memory requiredBriefings) public {
+    function createBriefing() public {
         briefingsCount++;
 
-        if (requiredBriefings.length > 0) {
-            briefings[briefingsCount] = Briefing(
-                briefingsCount,
-                msg.sender,
-                new uint256[](0)
-            );
-        } else {
-            briefings[briefingsCount] = Briefing(
-                briefingsCount,
-                msg.sender,
-                requiredBriefings
-            );
-        }
+        briefings[briefingsCount] = Briefing(briefingsCount, msg.sender);
     }
 
     function verifyBriefing(

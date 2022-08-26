@@ -1,4 +1,5 @@
 var ResourceRental = artifacts.require("./ResourceRental.sol");
+var SafetyBriefing = artifacts.require("./SafetyBriefing.sol");
 
 contract("ResourceRental", function (accounts) {
   it("initializes with two renters", function () {
@@ -40,12 +41,25 @@ contract("ResourceRental", function (accounts) {
           "Mannheim, Germani",
           "1654782938174",
           "1655992478797",
+          1,
           { from: accounts[1] }
         );
         return instance.resourcesCount;
       })
       .then(function (resourceCount) {
         assert.equal(resourceCount, 1, "Counter increases");
+      });
+  });
+
+  it("should create a safetyBriefing", function () {
+    return SafetyBriefing.deployed()
+      .then(function (instance) {
+        safetyBriefingInstance = instance;
+        safetyBriefingInstance.createBriefing({ from: accounts[1] });
+        return instance.briefingsCount;
+      })
+      .then(function (briefingsCount) {
+        assert.equal(briefingsCount, 1, "Counter increases");
       });
   });
 });
